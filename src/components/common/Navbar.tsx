@@ -19,12 +19,11 @@ const IconButton = ({
   className?: string;
 }) => (
   <Button
-    variant="ghost"
     size="icon"
     onClick={onClick}
-    className={`transition-transform hover:scale-110 cursor-pointer ${className}`}
+    className={`transition-transform hover:scale-110 cursor-pointer bg-transparent! ${className}`}
   >
-    <Icon className="h-5 w-5" />
+    <Icon className="h-7 w-7" />
   </Button>
 );
 
@@ -35,13 +34,13 @@ const Navbar = () => {
   const handleNavigation = (path: string) => router.push(path);
 
   return (
-    <nav className="fixed top-0 z-50 w-screen bg-background border-b shadow-sm overflow-hidden">
+    <nav className="fixed top-0 z-50 w-screen bg-black border-b shadow-sm overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* --- Logo --- */}
           <Link href="/">
             <Image
-              src={assets.logoLight}
+              src={assets.logoDark}
               alt="Z-shop"
               className="w-40 object-contain"
             />
@@ -53,7 +52,7 @@ const Navbar = () => {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Rechercher des produits..."
-                className="pl-10"
+                className="pl-10 bg-amber-50"
               />
             </div>
           </div>
