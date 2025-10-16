@@ -24,14 +24,14 @@ export default function Slide({
 
   return (
     <div
-      className="relative w-full rounded-xl overflow-hidden shadow-md group hover:shadow-lg transition-all duration-300 cursor-pointer"
+      className="relative w-full max-h-74 rounded-xl overflow-hidden h-full shadow-md group hover:shadow-lg transition-all duration-300 cursor-pointer"
       onClick={() => handleClick(title)}
     >
       {/* Image */}
       <Image
         src={image}
         alt={title}
-        className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+        className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
       />
 
       {/* Overlay (texte en bas) */}
