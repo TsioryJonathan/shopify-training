@@ -35,7 +35,7 @@ const Navbar = () => {
   const handleNavigation = (path: string) => router.push(path);
 
   return (
-    <nav className="sticky top-0 z-50 bg-background border-b shadow-sm">
+    <nav className="fixed top-0 z-50 w-screen bg-background border-b shadow-sm overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* --- Logo --- */}
