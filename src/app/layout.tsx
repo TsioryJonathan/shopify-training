@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
+import FooterShop from "@/components/common/Footer";
+import CategoryNavbar from "@/components/common/CategoryNavbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -38,7 +40,9 @@ export default function RootLayout({
         className={`${clashGrotesk.variable} antialiased pt-20 bg-gray-100`}
       >
         <Navbar />
-        {children}
+        <CategoryNavbar />
+        <div className="w-full h-full mt-25">{children}</div>
+        <FooterShop />
       </body>
     </html>
   );
