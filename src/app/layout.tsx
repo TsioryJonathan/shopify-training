@@ -37,11 +37,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${clashGrotesk.variable} antialiased pt-20 bg-gray-100`}
+        className={`${clashGrotesk.variable} antialiased bg-gray-100 overflow-x-hidden`}
       >
         <Navbar />
-        <CategoryNavbar />
-        <div className="w-full h-full mt-25">{children}</div>
+        <div className="w-full h-full">{children}</div>
         <FooterShop />
       </body>
     </html>

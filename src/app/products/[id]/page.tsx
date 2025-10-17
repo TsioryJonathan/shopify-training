@@ -1,7 +1,10 @@
-import React from 'react'
+"use client";
+
+import { useParams } from "next/navigation";
+import React from "react";
 
 export default function page() {
-  return (
-    <div>page</div>
-  )
+  const { id } = useParams();
+  alert(id);
+  return <div>page</div>;
 }

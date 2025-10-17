@@ -1,105 +1,87 @@
+// components/Navbar.tsx
+
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ShoppingBag, Search, User, Heart } from "lucide-react";
+
+import assets from "@/assets/images/assets";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
-import assets from "@/assets/images/assets";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import SearchBar from "./SearchBar";
 
-const IconButton = ({
+// Un composant réutilisable pour les icônes, légèrement amélioré
+const ActionIcon = ({
   icon: Icon,
   onClick,
-  className = "",
+  itemCount, // Optionnel: pour afficher un badge sur l'icône
 }: {
   icon: React.ElementType;
   onClick?: () => void;
-  className?: string;
+  itemCount?: number;
 }) => (
   <Button
+    variant="ghost" // Utilise le style "ghost" pour un meilleur effet au survol
     size="icon"
     onClick={onClick}
-    className={`transition-transform hover:scale-110 cursor-pointer bg-transparent! ${className}`}
+    className="relative rounded-full transition-transform hover:scale-110"
   >
-    <Icon className="h-7 w-7" />
+    <Icon className="h-6 w-6" />
+    {itemCount !== undefined && itemCount > 0 && (
+      <span className="absolute top-0 right-0 block h-4 w-4 transform translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500 text-xs text-white">
+        {itemCount}
+      </span>
+    )}
   </Button>
 );
 
 const Navbar = () => {
-  const [searchOpen, setSearchOpen] = useState(false);
   const router = useRouter();
 
   const handleNavigation = (path: string) => router.push(path);
 
   return (
-    <nav className="fixed top-0 z-50 w-screen bg-black border-b shadow-sm overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* --- Logo --- */}
-          <Link href="/">
-            <Image
-              src={assets.logoDark}
-              alt="Z-shop"
-              className="w-40 object-contain"
-            />
-          </Link>
+    <header className="fixed top-0 left-0 right-0 z-50">
+      <nav className="border-b bg-background/80 backdrop-blur-sm">
+        <div className="container px-10">
+          <div className="flex h-20 items-center justify-between">
+            <div className="flex items-center gap-10 justify-between">
+              <Link href="/" aria-label="Page d'accueil de Z-SHOP">
+                <Image
+                  src={assets.logoLight}
+                  alt="Z-shop Logo"
+                  className="w-70 object-contain "
+                />
+              </Link>
 
-          {/* --- Desktop Search Bar --- */}
-          <div className="hidden md:flex flex-1 max-w-xl mx-8">
-            <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Rechercher des produits..."
-                className="pl-10 bg-amber-50"
-              />
-            </div>
-          </div>
-
-          {/* --- Action Icons --- */}
-          <div className="flex items-center gap-2">
-            {/* Search (Mobile only) */}
-            <div className="md:hidden">
-              <IconButton
-                icon={Search}
-                onClick={() => setSearchOpen((prev) => !prev)}
-              />
+              <SearchBar />
             </div>
 
-            {/* Wishlist */}
-            <IconButton icon={Heart} />
-
-            {/* Cart */}
-            <IconButton
-              icon={ShoppingBag}
-              onClick={() => handleNavigation("/cart")}
-              className="relative"
-            />
-
-            {/* Profile */}
-            <IconButton
-              icon={User}
-              onClick={() => handleNavigation("/profile")}
-            />
+            <div className="flex items-center justify-end gap-2 sm:gap-4">
+              <ActionIcon icon={Heart} />
+              <ActionIcon
+                icon={ShoppingBag}
+                onClick={() => handleNavigation("/cart")}
+                itemCount={3}
+              />
+              <ActionIcon
+                icon={User}
+                onClick={() => handleNavigation("/profile")}
+              />
+            </div>
           </div>
         </div>
-
-        {/* --- Mobile Search Bar --- */}
-        {searchOpen && (
-          <div className="md:hidden pb-4 animate-fade-in">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Rechercher des produits..."
-                className="pl-10"
-                autoFocus
-              />
-            </div>
-          </div>
-        )}
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 };
 

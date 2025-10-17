@@ -1,10 +1,12 @@
 import assets from "@/assets/images/assets";
 import Carousel from "@/components/carousel/Carousel";
 import Slide from "@/components/carousel/Slide";
+import CategoryNavbar from "@/components/common/CategoryNavbar";
 import CategoryRounded from "@/components/home/CategoryRounded";
 import MiniCategoryCard from "@/components/home/MiniCategoryCard";
 import PopularProductCard from "@/components/home/PopularProductCard";
 import SectionWrapper from "@/components/home/SectionWrapper";
+import { Product } from "@/types/product.t";
 
 const slides = [
   <Slide
@@ -45,7 +47,7 @@ const popularCategories = [
   { title: "Beauté", image: assets.beautyCategory },
 ];
 
-const mockPopularProducts = [
+const mockPopularProducts: Product[] = [
   {
     id: "p-001",
     title: "Wireless Earbuds, IPX8",
@@ -104,7 +106,9 @@ const mockPopularProducts = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen px-4 w-full flex flex-col">
+    <div className="min-h-screen px-4 w-full flex flex-col mt-20">
+      {/* Category navbar */}
+      <CategoryNavbar />
       {/* Carousel */}
       <div className="md:px-10 md:grid md:grid-cols-10 w-full gap-5 ">
         <div className="col-span-2 flex flex-col gap-4">
