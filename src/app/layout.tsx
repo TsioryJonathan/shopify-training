@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${clashGrotesk.variable} antialiased bg-gray-100 overflow-x-hidden`}
+        className={`${clashGrotesk.variable} antialiased bg-white overflow-x-hidden`}
       >
         <Navbar />
         <div className="w-full h-full">{children}</div>

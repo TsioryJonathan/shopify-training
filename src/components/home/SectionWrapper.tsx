@@ -4,23 +4,55 @@ export default function SectionWrapper({
   title,
   children,
   className = "",
+  subtitle,
+  actionLink,
+  actionText = "Voir tout",
 }: {
   title: string;
   children: React.ReactNode;
   className?: string;
+  subtitle?: string;
+  actionLink?: string;
+  actionText?: string;
 }) {
   return (
-    <section
-      className={`w-full py-10 px-4 md:px-8 ${className} flex flex-col gap-10`}
-    >
-      <div className="flex flex-col items-center justify-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-center tracking-tight relative">
-          {title}
-          <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-16 h-[3px] bg-black rounded-full"></span>
-        </h2>
+    <section className={`w-full ${className}`}>
+      {/* Section Header */}
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 tracking-tight">
+            {title}
+          </h2>
+          {subtitle && (
+            <p className="text-sm text-gray-600 mt-1">{subtitle}</p>
+          )}
+        </div>
+        
+        {actionLink && (
+          <a
+            href={actionLink}
+            className="text-sm font-semibold text-[#FF6347] hover:text-[#E55347] transition-colors flex items-center gap-1 group"
+          >
+            {actionText}
+            <svg
+              className="w-4 h-4 transition-transform group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </a>
+        )}
       </div>
 
-      <div className="w-full max-w-7xl mx-auto">{children}</div>
+      {/* Section Content */}
+      <div className="w-full">{children}</div>
     </section>
   );
 }

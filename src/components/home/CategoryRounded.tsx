@@ -20,21 +20,22 @@ export default function CategoryRounded({
   };
   return (
     <div
-      className={`flex flex-col gap-3 items-center justify-center cursor-pointer group ${className}`}
+      className={`flex flex-col gap-2 items-center justify-center cursor-pointer group ${className}`}
       onClick={() => handleClick(label)}
     >
-      {/* --- Image ronde avec effet hover --- */}
-      <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">
+      {/* Category Image Circle */}
+      <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-gray-100 shadow-sm group-hover:shadow-md group-hover:border-[#FF6347] transition-all duration-300">
         <Image
           src={image}
           alt={label}
           fill
-          className="object-cover group-hover:brightness-90 transition-all duration-300"
+          className="object-cover group-hover:scale-110 transition-transform duration-500"
         />
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
       </div>
 
-      {/* --- Label --- */}
-      <p className="text-base md:text-lg font-semibold text-center tracking-tight group-hover:text-black/70 transition-colors duration-300">
+      {/* Label */}
+      <p className="text-xs md:text-sm font-medium text-gray-700 text-center group-hover:text-[#FF6347] transition-colors duration-300 line-clamp-1">
         {label}
       </p>
     </div>

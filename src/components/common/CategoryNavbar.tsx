@@ -42,14 +42,15 @@ export default function CategoryNavbar({
   return (
     <div
       className={[
-        "w-full border-b border-neutral-200 bg-white",
-        "py-3 md:py-4",
-        "fixed top-16 left-0 z-20",
+        "w-full border-b border-gray-100 bg-white shadow-sm",
+        "py-2",
+        "sticky top-[112px] left-0 z-30",
         className,
       ].join(" ")}
     >
-      <div className="flex max-w-6xl items-center gap-3 px-4 sm:px-6 lg:px-8">
-        <div className="shrink-0">
+      <div className="flex max-w-[1400px] mx-auto items-center gap-3 px-4 sm:px-6 lg:px-8">
+        {/* Mobile Category Dropdown */}
+        <div className="md:hidden shrink-0">
           <label className="sr-only" htmlFor="cat-select">
             Catégories
           </label>
@@ -58,9 +59,9 @@ export default function CategoryNavbar({
               id="cat-select"
               onChange={handleSelect}
               className={[
-                "peer block w-[210px] rounded-lg border border-neutral-300 bg-white",
-                "px-3 py-2 text-sm text-neutral-900",
-                "outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200",
+                "peer block w-full rounded-lg border border-gray-200 bg-white",
+                "px-3 py-2 text-sm text-gray-900",
+                "outline-none transition focus:border-[#FF6347] focus:ring-1 focus:ring-[#FF6347]",
               ].join(" ")}
               defaultValue={categories[0]?.href ?? "/categories"}
             >
@@ -70,28 +71,24 @@ export default function CategoryNavbar({
                 </option>
               ))}
             </select>
-            {/* petite icône chevron */}
-            <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-neutral-500">
+            <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 text-xs">
               ▼
             </span>
           </div>
         </div>
 
-        {/* Séparateur (optionnel) */}
-        <div className="hidden h-6 w-px bg-neutral-200 md:block" />
-
-        {/* Zone droite : Swiper catégories + flèches */}
-        <div className="relative flex-1">
-          {/* Flèches custom */}
+        {/* Desktop Category Pills */}
+        <div className="hidden md:block relative flex-1 overflow-hidden">
+          {/* Navigation Arrows */}
           <button
             aria-label="Précédent"
             className={[
               "cat-prev absolute left-0 top-1/2 z-10 -translate-y-1/2",
-              "hidden h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-700",
-              "hover:bg-neutral-50 md:flex",
+              "h-7 w-7 items-center justify-center rounded-full bg-white border border-gray-200 text-gray-700",
+              "hover:bg-gray-50 hover:border-[#FF6347] hover:text-[#FF6347] hidden md:flex transition-all shadow-sm",
             ].join(" ")}
           >
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
               <path d="M15.5 19.1 8.4 12l7.1-7.1-1.4-1.4L5.6 12l8.5 8.5 1.4-1.4Z" />
             </svg>
           </button>
@@ -100,17 +97,17 @@ export default function CategoryNavbar({
             aria-label="Suivant"
             className={[
               "cat-next absolute right-0 top-1/2 z-10 -translate-y-1/2",
-              "hidden h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-700",
-              "hover:bg-neutral-50 md:flex",
+              "h-7 w-7 items-center justify-center rounded-full bg-white border border-gray-200 text-gray-700",
+              "hover:bg-gray-50 hover:border-[#FF6347] hover:text-[#FF6347] hidden md:flex transition-all shadow-sm",
             ].join(" ")}
           >
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
               <path d="m8.5 4.9 7.1 7.1-7.1 7.1 1.4 1.4 8.5-8.5L9.9 3.5 8.5 4.9Z" />
             </svg>
           </button>
 
           {/* Carousel */}
-          <div className="mx-10 md:mx-9">
+          <div className="mx-8">
             <Swiper
               modules={[Navigation]}
               navigation={{
@@ -118,22 +115,23 @@ export default function CategoryNavbar({
                 nextEl: ".cat-next",
               }}
               slidesPerView="auto"
-              spaceBetween={10}
+              spaceBetween={8}
               grabCursor
-              className="!py-1"
+              className="!py-2"
             >
               {categories.map((c) => (
                 <SwiperSlide
                   key={`slide-${c.href}`}
-                  className="!w-auto" // largeur auto pour des "chips"
+                  className="!w-auto"
                 >
                   <a
                     href={c.href}
                     className={[
                       "inline-flex items-center justify-center rounded-full",
-                      "border border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-800",
-                      "hover:border-emerald-400 hover:text-emerald-700",
-                      "transition",
+                      "border border-gray-200 bg-white px-4 py-1.5 text-xs font-medium text-gray-700",
+                      "hover:border-[#FF6347] hover:bg-[#FF6347] hover:text-white",
+                      "transition-all duration-200",
+                      c.label === "All" && "bg-[#FF6347] text-white border-[#FF6347]",
                     ].join(" ")}
                   >
                     {c.label}

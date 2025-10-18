@@ -9,7 +9,7 @@ type Props = {
   onApply?: (filters: Record<string, any>) => void;
   onReset?: () => void;
   className?: string;
-  topOffsetPx?: number; // hauteur du header si besoin (par défaut ~80px)
+  topOffsetPx?: number; // hauteur du header si besoin
 };
 
 export default function Sidebar({
@@ -24,7 +24,7 @@ export default function Sidebar({
   onApply,
   onReset,
   className,
-  topOffsetPx = 80,
+  topOffsetPx = 136,
 }: Props) {
   const [q, setQ] = useState("");
   const [category, setCategory] = useState("");
@@ -53,85 +53,106 @@ export default function Sidebar({
 
   return (
     <aside
-      className={`sticky top-20 left-0 z-40 w-60 md:w-72 border-r bg-white ${
+      className={`sticky top-20 left-0 z-40 w-64 md:w-72 border-r border-gray-100 bg-white ${
         className ?? ""
       }`}
       style={{
         top: topOffsetPx,
         height: `calc(100vh - ${topOffsetPx}px)`,
       }}
-      // pas de scroll :
-      // (contenu équilibré pour tenir sur une hauteur d’écran standard)
     >
-      <div className="flex h-full flex-col gap-3 p-4 overflow-hidden">
-        <h2 className="text-base font-semibold">Filtres</h2>
+      <div className="flex h-full flex-col gap-5 p-6 overflow-y-auto">
+        {/* Header */}
+        <div className="border-b border-gray-100 pb-4">
+          <h2 className="text-lg font-bold text-gray-900">Filtres</h2>
+          <p className="text-xs text-gray-500 mt-1">Affinez votre recherche</p>
+        </div>
 
-        {/* Recherche (1 ligne) */}
-        <input
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="Recherche…"
-          className="w-full rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-sky-500"
-        />
-
-        {/* Catégorie (1 ligne) */}
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="w-full rounded-lg border px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500"
-        >
-          {categories.map((c) => (
-            <option key={c.value} value={c.value}>
-              {c.label}
-            </option>
-          ))}
-        </select>
-
-        {/* Prix (1 ligne compacte) */}
-        <div className="flex items-center gap-2">
+        {/* Search */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Recherche
+          </label>
           <input
-            type="number"
-            inputMode="numeric"
-            placeholder="Min"
-            value={minPrice}
-            onChange={(e) => setMinPrice(e.target.value)}
-            className="w-1/2 rounded-lg border px-2 py-2 text-sm focus:ring-2 focus:ring-sky-500"
-          />
-          <span className="text-gray-400">—</span>
-          <input
-            type="number"
-            inputMode="numeric"
-            placeholder="Max"
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(e.target.value)}
-            className="w-1/2 rounded-lg border px-2 py-2 text-sm focus:ring-2 focus:ring-sky-500"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Rechercher un produit..."
+            className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-colors"
           />
         </div>
 
-        {/* En stock (1 ligne) */}
-        <label className="flex items-center gap-2 text-sm">
-          <input
-            type="checkbox"
-            checked={inStock}
-            onChange={(e) => setInStock(e.target.checked)}
-            className="h-4 w-4 accent-sky-600"
-          />
-          En stock seulement
-        </label>
+        {/* Category */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Catégorie
+          </label>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-colors bg-white"
+          >
+            {categories.map((c) => (
+              <option key={c.value} value={c.value}>
+                {c.label}
+              </option>
+            ))}
+          </select>
+        </div>
 
-        {/* Actions (en bas, sans scroll) */}
-        <div className="mt-auto flex gap-2">
+        {/* Price Range */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Prix (Ar)
+          </label>
+          <div className="flex items-center gap-3">
+            <input
+              type="number"
+              inputMode="numeric"
+              placeholder="Min"
+              value={minPrice}
+              onChange={(e) => setMinPrice(e.target.value)}
+              className="w-1/2 rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-colors"
+            />
+            <span className="text-gray-400">—</span>
+            <input
+              type="number"
+              inputMode="numeric"
+              placeholder="Max"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+              className="w-1/2 rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-colors"
+            />
+          </div>
+        </div>
+
+        {/* Stock Filter */}
+        <div className="pt-2">
+          <label className="flex items-center gap-3 text-sm cursor-pointer group">
+            <input
+              type="checkbox"
+              checked={inStock}
+              onChange={(e) => setInStock(e.target.checked)}
+              className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-400 focus:ring-offset-0"
+            />
+            <span className="text-gray-700 group-hover:text-gray-900 transition-colors">
+              En stock seulement
+            </span>
+          </label>
+        </div>
+
+        {/* Actions */}
+        <div className="mt-auto pt-6 border-t border-gray-100 flex gap-3">
           <button
             onClick={apply}
-            className="flex-1 rounded-lg bg-sky-600 px-3 py-2 text-sm font-medium text-white hover:bg-sky-700"
+            className="flex-1 rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-gray-800 transition-colors"
           >
             Appliquer
           </button>
           <button
             onClick={reset}
-            className="rounded-lg border px-3 py-2 text-sm hover:bg-gray-50"
+            className="rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
           >
-            Réinit.
+            Réinitialiser
           </button>
         </div>
       </div>

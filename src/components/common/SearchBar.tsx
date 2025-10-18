@@ -39,13 +39,13 @@ export default function SearchBar({
   return (
     <form onSubmit={handleSearch} className={`w-full ${className}`}>
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
         <Input
           type="search"
           placeholder={placeholder}
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className="lg:w-150 rounded-lg bg-background pl-10 h-12 text-md shadow-sm outline-none focus:outline-none"
+          className="w-full rounded-full bg-gray-50 pl-10 pr-4 h-10 text-sm border-gray-200 focus:border-[#FF6347] focus:ring-1 focus:ring-[#FF6347] focus:bg-white transition-all"
         />
       </div>
     </form>
