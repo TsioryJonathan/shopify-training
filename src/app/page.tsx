@@ -25,7 +25,7 @@ const slides = [
     subtitle="Jusqu'à 70% de réduction sur une sélection"
     discount="-70%"
     ctaText="Profiter maintenant"
-    ctaLink="/sales"
+    ctaLink="/products"
     key={2}
   />,
   <Slide
@@ -34,7 +34,7 @@ const slides = [
     subtitle="Soyez les premiers à porter les nouvelles pièces"
     discount="-30%"
     ctaText="Voir la collection"
-    ctaLink="/new-arrivals"
+    ctaLink="/products"
     key={3}
   />,
 ];
@@ -149,7 +149,7 @@ export default function Home() {
         <SectionWrapper 
           title="Tendances du moment 🔥" 
           subtitle="Ne manquez pas ces offres limitées"
-          actionLink="/trending"
+          actionLink="/products"
           actionText="Voir plus"
           className="mb-12"
         >

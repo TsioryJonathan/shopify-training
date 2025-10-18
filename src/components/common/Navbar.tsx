@@ -11,6 +11,8 @@ import { useState } from "react";
 import assets from "@/assets/images/assets";
 import { Button } from "@/components/ui/button";
 import SearchBar from "./SearchBar";
+import { useCartStore } from "@/stores/useCartStore";
+import { useWishlistStore } from "@/stores/useWishlistStore";
 
 // Shein-style action icon component
 const ActionIcon = ({
@@ -41,6 +43,8 @@ const ActionIcon = ({
 const Navbar = () => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const cartItemsCount = useCartStore((state) => state.getTotalItems());
+  const wishlistItemsCount = useWishlistStore((state) => state.items.length);
 
   const handleNavigation = (path: string) => router.push(path);
 
@@ -68,19 +72,19 @@ const Navbar = () => {
 
               {/* Desktop navigation links */}
               <div className="hidden lg:flex items-center gap-6">
-                <Link href="/nouveautes" className="text-sm font-medium text-gray-700 hover:text-[#FF6347] transition-colors">
+                <Link href="/products" className="text-sm font-medium text-gray-700 hover:text-[#FF6347] transition-colors">
                   NOUVEAUTÉS
                 </Link>
-                <Link href="/femmes" className="text-sm font-medium text-gray-700 hover:text-[#FF6347] transition-colors">
+                <Link href="/products" className="text-sm font-medium text-gray-700 hover:text-[#FF6347] transition-colors">
                   FEMMES
                 </Link>
-                <Link href="/hommes" className="text-sm font-medium text-gray-700 hover:text-[#FF6347] transition-colors">
+                <Link href="/products" className="text-sm font-medium text-gray-700 hover:text-[#FF6347] transition-colors">
                   HOMMES
                 </Link>
-                <Link href="/enfants" className="text-sm font-medium text-gray-700 hover:text-[#FF6347] transition-colors">
+                <Link href="/products" className="text-sm font-medium text-gray-700 hover:text-[#FF6347] transition-colors">
                   ENFANTS
                 </Link>
-                <Link href="/ventes" className="text-sm font-bold text-[#FF6347] hover:text-[#E55347] transition-colors">
+                <Link href="/products" className="text-sm font-bold text-[#FF6347] hover:text-[#E55347] transition-colors">
                   VENTES 🔥
                 </Link>
               </div>
@@ -102,13 +106,13 @@ const Navbar = () => {
                 icon={Heart} 
                 label="Favoris"
                 onClick={() => handleNavigation("/wishlist")}
-                itemCount={5}
+                itemCount={wishlistItemsCount}
               />
               <ActionIcon
                 icon={ShoppingBag}
                 label="Panier"
                 onClick={() => handleNavigation("/cart")}
-                itemCount={3}
+                itemCount={cartItemsCount}
               />
               <ActionIcon
                 icon={User}
@@ -138,19 +142,19 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-200 shadow-lg">
           <div className="px-4 py-4 space-y-3">
-            <Link href="/nouveautes" className="block py-2 text-sm font-medium text-gray-700 hover:text-[#FF6347]">
+            <Link href="/products" className="block py-2 text-sm font-medium text-gray-700 hover:text-[#FF6347]">
               NOUVEAUTÉS
             </Link>
-            <Link href="/femmes" className="block py-2 text-sm font-medium text-gray-700 hover:text-[#FF6347]">
+            <Link href="/products" className="block py-2 text-sm font-medium text-gray-700 hover:text-[#FF6347]">
               FEMMES
             </Link>
-            <Link href="/hommes" className="block py-2 text-sm font-medium text-gray-700 hover:text-[#FF6347]">
+            <Link href="/products" className="block py-2 text-sm font-medium text-gray-700 hover:text-[#FF6347]">
               HOMMES
             </Link>
-            <Link href="/enfants" className="block py-2 text-sm font-medium text-gray-700 hover:text-[#FF6347]">
+            <Link href="/products" className="block py-2 text-sm font-medium text-gray-700 hover:text-[#FF6347]">
               ENFANTS
             </Link>
-            <Link href="/ventes" className="block py-2 text-sm font-bold text-[#FF6347]">
+            <Link href="/products" className="block py-2 text-sm font-bold text-[#FF6347]">
               VENTES 🔥
             </Link>
           </div>

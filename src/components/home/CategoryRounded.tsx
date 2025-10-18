@@ -16,7 +16,7 @@ export default function CategoryRounded({
   const router = useRouter();
 
   const handleClick = (category: string) => {
-    router.push(`/categories/${category.toLowerCase()}`);
+    router.push("/products");
   };
   return (
     <div

@@ -18,7 +18,7 @@ export default function MiniCategoryCard({
   const router = useRouter();
 
   const handleClick = (title: string) => {
-    router.push(`/category/${title.toLowerCase()}`);
+    router.push("/products");
   };
 
   return (

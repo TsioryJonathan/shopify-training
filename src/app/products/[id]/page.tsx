@@ -6,6 +6,8 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Heart, ShoppingCart, Star, Truck, Shield, RefreshCw, ChevronLeft, Share2, Minus, Plus } from "lucide-react";
 import PopularProductCard from "@/components/home/PopularProductCard";
+import { useCartStore } from "@/stores/useCartStore";
+import { useWishlistStore } from "@/stores/useWishlistStore";
 
 export default function AboutProduct() {
   const { id } = useParams();
@@ -14,7 +16,12 @@ export default function AboutProduct() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("M");
-  const [isWished, setIsWished] = useState(false);
+  
+  const addToCart = useCartStore((state) => state.addItem);
+  const toggleWishlist = useWishlistStore((state) => state.toggleItem);
+  const isInWishlist = useWishlistStore((state) => 
+    state.isInWishlist(id as string)
+  );
 
   useEffect(() => {
     const foundProduct = mockProducts.find((p) => p.id === id);
@@ -67,12 +74,12 @@ export default function AboutProduct() {
               />
               {/* Wishlist Button */}
               <button
-                onClick={() => setIsWished(!isWished)}
+                onClick={() => toggleWishlist(product)}
                 className="absolute top-4 right-4 p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-sm hover:bg-white hover:scale-105 transition-all z-10"
               >
                 <Heart
                   className={`h-5 w-5 ${
-                    isWished ? "fill-rose-500 text-rose-500" : "text-gray-600"
+                    isInWishlist ? "fill-rose-500 text-rose-500" : "text-gray-600"
                   }`}
                 />
               </button>
@@ -247,11 +254,23 @@ export default function AboutProduct() {
 
             {/* Action Buttons */}
             <div className="space-y-3 pt-4">
-              <button className="w-full flex items-center justify-center gap-3 bg-gray-900 text-white py-4 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+              <button 
+                onClick={() => {
+                  addToCart(product, quantity, selectedSize);
+                  // Optionally show a toast notification here
+                }}
+                className="w-full flex items-center justify-center gap-3 bg-gray-900 text-white py-4 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors"
+              >
                 <ShoppingCart className="h-5 w-5" />
                 Ajouter au panier
               </button>
-              <button className="w-full flex items-center justify-center gap-3 border-2 border-gray-900 text-gray-900 py-4 px-6 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
+              <button 
+                onClick={() => {
+                  addToCart(product, quantity, selectedSize);
+                  router.push("/cart");
+                }}
+                className="w-full flex items-center justify-center gap-3 border-2 border-gray-900 text-gray-900 py-4 px-6 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+              >
                 Acheter maintenant
               </button>
               <button className="w-full flex items-center justify-center gap-3 border border-gray-200 text-gray-700 py-3 px-6 rounded-lg hover:bg-gray-50 transition-colors">
@@ -375,16 +394,21 @@ export default function AboutProduct() {
             <div className="text-2xl font-bold text-gray-900">{product.price}</div>
           </div>
           <button
-            onClick={() => setIsWished(!isWished)}
+            onClick={() => toggleWishlist(product)}
             className="p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <Heart
               className={`h-5 w-5 ${
-                isWished ? "fill-rose-500 text-rose-500" : "text-gray-600"
+                isInWishlist ? "fill-rose-500 text-rose-500" : "text-gray-600"
               }`}
             />
           </button>
-          <button className="flex-1 flex items-center justify-center gap-2 bg-gray-900 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+          <button 
+            onClick={() => {
+              addToCart(product, 1, selectedSize);
+            }}
+            className="flex-1 flex items-center justify-center gap-2 bg-gray-900 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors"
+          >
             <ShoppingCart className="h-5 w-5" />
             Ajouter
           </button>

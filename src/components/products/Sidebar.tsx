@@ -10,24 +10,28 @@ type Props = {
   onReset?: () => void;
   className?: string;
   topOffsetPx?: number; // hauteur du header si besoin
+  initialCategory?: string;
 };
 
 export default function Sidebar({
   categories = [
     { label: "Toutes", value: "" },
-    { label: "Électronique", value: "electronics" },
-    { label: "Mode", value: "fashion" },
-    { label: "Maison", value: "home" },
-    { label: "Beauté", value: "beauty" },
-    { label: "Sport", value: "sports" },
+    { label: "Électronique", value: "Électronique" },
+    { label: "Mode Femme", value: "Mode Femme" },
+    { label: "Mode Homme", value: "Mode Homme" },
+    { label: "Chaussures", value: "Chaussures" },
+    { label: "Accessoires", value: "Accessoires" },
+    { label: "Beauté", value: "Beauté" },
+    { label: "Maison", value: "Maison" },
   ],
   onApply,
   onReset,
   className,
   topOffsetPx = 136,
+  initialCategory = "",
 }: Props) {
   const [q, setQ] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(initialCategory);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [inStock, setInStock] = useState(false);

@@ -16,16 +16,14 @@ type Props = {
 };
 
 const defaultCategories: Category[] = [
-  { label: "All", href: "/categories" },
-  { label: "Vêtements", href: "/categories/vetements" },
-  { label: "Chaussures", href: "/categories/chaussures" },
-  { label: "Accessoires", href: "/categories/accessoires" },
-  { label: "Beauté", href: "/categories/beaute" },
-  { label: "Électronique", href: "/categories/electronique" },
-  { label: "Maison", href: "/categories/maison" },
-  { label: "Sport", href: "/categories/sport" },
-  { label: "Jeux & Jouets", href: "/categories/jeux" },
-  { label: "Informatique", href: "/categories/informatique" },
+  { label: "Tous", href: "/products" },
+  { label: "Électronique", href: "/products?category=Électronique" },
+  { label: "Mode Femme", href: "/products?category=Mode Femme" },
+  { label: "Mode Homme", href: "/products?category=Mode Homme" },
+  { label: "Chaussures", href: "/products?category=Chaussures" },
+  { label: "Accessoires", href: "/products?category=Accessoires" },
+  { label: "Beauté", href: "/products?category=Beauté" },
+  { label: "Maison", href: "/products?category=Maison" },
 ];
 
 export default function CategoryNavbar({
@@ -63,7 +61,7 @@ export default function CategoryNavbar({
                 "px-3 py-2 text-sm text-gray-900",
                 "outline-none transition focus:border-[#FF6347] focus:ring-1 focus:ring-[#FF6347]",
               ].join(" ")}
-              defaultValue={categories[0]?.href ?? "/categories"}
+              defaultValue={categories[0]?.href ?? "/products"}
             >
               {categories.map((c) => (
                 <option key={c.href} value={c.href}>
@@ -131,7 +129,7 @@ export default function CategoryNavbar({
                       "border border-gray-200 bg-white px-4 py-1.5 text-xs font-medium text-gray-700",
                       "hover:border-[#FF6347] hover:bg-[#FF6347] hover:text-white",
                       "transition-all duration-200",
-                      c.label === "All" && "bg-[#FF6347] text-white border-[#FF6347]",
+                      c.label === "Tous" && "bg-[#FF6347] text-white border-[#FF6347]",
                     ].join(" ")}
                   >
                     {c.label}

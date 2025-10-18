@@ -4,13 +4,15 @@
 import Image, { StaticImageData } from "next/image";
 import React, { useState } from "react";
 import { Heart, ShoppingCart, Star } from "lucide-react";
+import { useWishlistStore } from "@/stores/useWishlistStore";
+import { useCartStore } from "@/stores/useCartStore";
 
 type Thumb = { src: string; alt?: string };
 
 type Props = {
-  id: string | number;
+  id: string;
   title: string;
-  category?: string;
+  category: string;
   price: string;
   oldPrice?: string;
   discountLabel?: string;
@@ -41,15 +43,24 @@ export default function ProductCardShop({
   className = "",
 }: Props) {
   const [activeIdx, setActiveIdx] = useState(0);
-  const [isWished, setIsWished] = useState(false);
   const gallery = thumbnails.length ? thumbnails : [{ src: image, alt: title }];
+  
+  const toggleWishlist = useWishlistStore((state) => state.toggleItem);
+  const isInWishlist = useWishlistStore((state) => state.isInWishlist(id));
+  const addToCart = useCartStore((state) => state.addItem);
 
   const active = gallery[Math.min(activeIdx, gallery.length - 1)];
 
   const handleWish = (e: React.MouseEvent) => {
     e.preventDefault();
-    setIsWished(!isWished);
+    toggleWishlist({ id, title, category, price, oldPrice, image, href, rating, reviewsCount });
     onWish?.();
+  };
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    addToCart({ id, title, category, price, oldPrice, image, href, rating, reviewsCount }, 1);
+    onAdd?.();
   };
 
   return (
@@ -78,7 +89,7 @@ export default function ProductCardShop({
         >
           <Heart
             className={`h-4 w-4 transition-colors ${
-              isWished ? "fill-rose-500 text-rose-500" : "text-gray-600"
+              isInWishlist ? "fill-rose-500 text-rose-500" : "text-gray-600"
             }`}
           />
         </button>
@@ -95,10 +106,7 @@ export default function ProductCardShop({
         {/* Quick add overlay (appears on hover) */}
         <div className="absolute inset-x-0 bottom-0 translate-y-full bg-gradient-to-t from-black/60 to-transparent p-4 transition-transform duration-300 group-hover:translate-y-0">
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              onAdd?.();
-            }}
+            onClick={handleAddToCart}
             className="flex w-full items-center justify-center gap-2 rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-gray-900 transition-all hover:bg-gray-100"
           >
             <ShoppingCart className="h-4 w-4" />

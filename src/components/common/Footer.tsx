@@ -87,7 +87,7 @@ export default function FooterShop() {
               "Maison",
             ].map((t) => (
               <li key={t}>
-                  <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href={`/c/${slug(t)}`}>
+                  <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href="/products">
                   {t}
                 </a>
               </li>
@@ -100,27 +100,27 @@ export default function FooterShop() {
             <h4 className="text-sm font-bold text-gray-900 mb-4">Service Client</h4>
             <ul className="space-y-3 text-sm">
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href="/support">
+                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                   Centre d'aide
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href="/shipping">
+                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Livraison & Suivi
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href="/returns">
+                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                   Retours
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href="/payments">
+                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Paiements
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href="/faq">
+                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 FAQ
               </a>
             </li>
@@ -132,27 +132,27 @@ export default function FooterShop() {
             <h4 className="text-sm font-bold text-gray-900 mb-4">À Propos</h4>
             <ul className="space-y-3 text-sm">
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href="/about">
+                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                   Notre Histoire
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href="/careers">
+                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Carrières
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href="/partners">
+                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                   Partenaires
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href="/press">
+                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Presse
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href="/contact">
+                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Contact
               </a>
             </li>
@@ -164,17 +164,17 @@ export default function FooterShop() {
             <h4 className="text-sm font-bold text-gray-900 mb-4">Informations</h4>
             <ul className="space-y-3 text-sm mb-6">
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href="/terms">
+                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                   Conditions
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href="/privacy">
+                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                   Confidentialité
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href="/cookies">
+                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Cookies
               </a>
             </li>
@@ -199,15 +199,15 @@ export default function FooterShop() {
               © {year} Z-SHOP. Tous droits réservés. Made with ❤️ in Madagascar
             </p>
             <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
-              <a className="hover:text-[#FF6347] transition-colors" href="/accessibility">
+              <a className="hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Accessibilité
               </a>
               <span className="text-gray-300">•</span>
-              <a className="hover:text-[#FF6347] transition-colors" href="/sitemap">
+              <a className="hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Plan du site
               </a>
               <span className="text-gray-300">•</span>
-              <a className="hover:text-[#FF6347] transition-colors" href="/security">
+              <a className="hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Sécurité
               </a>
             </div>
