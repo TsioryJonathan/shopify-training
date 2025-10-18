@@ -40,7 +40,7 @@ export default function CategoryNavbar({
   return (
     <div
       className={[
-        "w-full border-b border-gray-100 bg-white shadow-sm",
+        "w-full border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm transition-colors",
         "py-2",
         "sticky top-[112px] left-0 z-30",
         className,
@@ -57,8 +57,8 @@ export default function CategoryNavbar({
               id="cat-select"
               onChange={handleSelect}
               className={[
-                "peer block w-full rounded-lg border border-gray-200 bg-white",
-                "px-3 py-2 text-sm text-gray-900",
+                "peer block w-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800",
+                "px-3 py-2 text-sm text-gray-900 dark:text-white",
                 "outline-none transition focus:border-[#FF6347] focus:ring-1 focus:ring-[#FF6347]",
               ].join(" ")}
               defaultValue={categories[0]?.href ?? "/products"}
@@ -82,8 +82,8 @@ export default function CategoryNavbar({
             aria-label="Précédent"
             className={[
               "cat-prev absolute left-0 top-1/2 z-10 -translate-y-1/2",
-              "h-7 w-7 items-center justify-center rounded-full bg-white border border-gray-200 text-gray-700",
-              "hover:bg-gray-50 hover:border-[#FF6347] hover:text-[#FF6347] hidden md:flex transition-all shadow-sm",
+              "h-7 w-7 items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300",
+              "hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-[#FF6347] hover:text-[#FF6347] hidden md:flex transition-all shadow-sm",
             ].join(" ")}
           >
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
@@ -95,8 +95,8 @@ export default function CategoryNavbar({
             aria-label="Suivant"
             className={[
               "cat-next absolute right-0 top-1/2 z-10 -translate-y-1/2",
-              "h-7 w-7 items-center justify-center rounded-full bg-white border border-gray-200 text-gray-700",
-              "hover:bg-gray-50 hover:border-[#FF6347] hover:text-[#FF6347] hidden md:flex transition-all shadow-sm",
+              "h-7 w-7 items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300",
+              "hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-[#FF6347] hover:text-[#FF6347] hidden md:flex transition-all shadow-sm",
             ].join(" ")}
           >
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
@@ -126,7 +126,7 @@ export default function CategoryNavbar({
                     href={c.href}
                     className={[
                       "inline-flex items-center justify-center rounded-full",
-                      "border border-gray-200 bg-white px-4 py-1.5 text-xs font-medium text-gray-700",
+                      "border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300",
                       "hover:border-[#FF6347] hover:bg-[#FF6347] hover:text-white",
                       "transition-all duration-200",
                       c.label === "Tous" && "bg-[#FF6347] text-white border-[#FF6347]",

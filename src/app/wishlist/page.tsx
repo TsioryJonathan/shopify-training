@@ -19,21 +19,21 @@ export default function WishlistPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-white pt-[136px]">
+      <div className="min-h-screen bg-white dark:bg-gray-900 pt-[136px] transition-colors">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center py-16">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 mb-6">
-              <Heart className="h-10 w-10 text-gray-400" />
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 dark:bg-gray-800 mb-6">
+              <Heart className="h-10 w-10 text-gray-400 dark:text-gray-500" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
               Votre liste de souhaits est vide
             </h2>
-            <p className="text-gray-600 mb-8">
+            <p className="text-gray-600 dark:text-gray-300 mb-8">
               Explorez nos produits et ajoutez vos favoris
             </p>
             <button
               onClick={() => router.push("/products")}
-              className="inline-flex items-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors"
+              className="inline-flex items-center gap-2 bg-gray-900 dark:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors"
             >
               Découvrir nos produits
             </button>
@@ -44,29 +44,29 @@ export default function WishlistPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white pt-[136px]">
+    <div className="min-h-screen bg-white dark:bg-gray-900 pt-[136px] transition-colors">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors mb-4"
+            className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors mb-4"
           >
             <ArrowLeft className="h-4 w-4" />
             Retour
           </button>
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-1">
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
                 Ma liste de souhaits
               </h1>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-300">
                 {items.length} {items.length === 1 ? "produit" : "produits"}
               </p>
             </div>
             <button
               onClick={clearWishlist}
-              className="text-sm text-gray-600 hover:text-red-600 transition-colors"
+              className="text-sm text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
             >
               Vider la liste
             </button>
@@ -78,20 +78,20 @@ export default function WishlistPage() {
           {items.map((item) => (
             <div
               key={item.id}
-              className="group relative bg-white rounded-lg border border-gray-100 overflow-hidden hover:shadow-md transition-all"
+              className="group relative bg-white dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all"
             >
               {/* Remove Button */}
               <button
                 onClick={() => removeItem(item.id)}
-                className="absolute top-2 right-2 z-10 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-sm hover:bg-white hover:scale-110 transition-all"
+                className="absolute top-2 right-2 z-10 p-2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full shadow-sm hover:bg-white dark:hover:bg-gray-700 hover:scale-110 transition-all"
               >
-                <X className="h-4 w-4 text-gray-600" />
+                <X className="h-4 w-4 text-gray-600 dark:text-gray-300" />
               </button>
 
               {/* Image */}
               <a
                 href={item.href}
-                className="relative block aspect-[3/4] overflow-hidden bg-gray-50"
+                className="relative block aspect-[3/4] overflow-hidden bg-gray-50 dark:bg-gray-700"
               >
                 <Image
                   src={item.image}
@@ -104,13 +104,13 @@ export default function WishlistPage() {
               {/* Info */}
               <div className="p-3">
                 {item.category && (
-                  <p className="mb-1 text-xs text-gray-500 uppercase tracking-wide">
+                  <p className="mb-1 text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">
                     {item.category}
                   </p>
                 )}
                 <a
                   href={item.href}
-                  className="block mb-2 text-sm font-medium text-gray-900 line-clamp-2 hover:text-gray-600 transition-colors"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white line-clamp-2 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                 >
                   {item.title}
                 </a>
@@ -138,9 +138,9 @@ export default function WishlistPage() {
 
                 {/* Price */}
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="text-lg font-bold text-gray-900">{item.price}</span>
+                  <span className="text-lg font-bold text-gray-900 dark:text-white">{item.price}</span>
                   {item.oldPrice && (
-                    <span className="text-sm text-gray-400 line-through">
+                    <span className="text-sm text-gray-400 dark:text-gray-500 line-through">
                       {item.oldPrice}
                     </span>
                   )}
@@ -149,7 +149,7 @@ export default function WishlistPage() {
                 {/* Add to Cart Button */}
                 <button
                   onClick={() => handleAddToCart(item)}
-                  className="w-full flex items-center justify-center gap-2 bg-gray-900 text-white py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-800 transition-colors"
+                  className="w-full flex items-center justify-center gap-2 bg-gray-900 dark:bg-gray-700 text-white py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors"
                 >
                   <ShoppingCart className="h-4 w-4" />
                   Ajouter au panier
@@ -163,7 +163,7 @@ export default function WishlistPage() {
         <div className="mt-12 text-center">
           <button
             onClick={() => router.push("/products")}
-            className="inline-flex items-center gap-2 border border-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+            className="inline-flex items-center gap-2 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
           >
             Continuer vos achats
           </button>

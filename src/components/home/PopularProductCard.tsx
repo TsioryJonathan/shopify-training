@@ -67,16 +67,16 @@ export default function ProductCardShop({
     <article
       key={id}
       className={[
-        "group relative w-full max-w-[280px] bg-white overflow-hidden",
-        "transition-all duration-300 hover:shadow-md rounded-lg border border-gray-100",
+        "group relative w-full max-w-[280px] bg-white dark:bg-gray-800 overflow-hidden",
+        "transition-all duration-300 hover:shadow-md dark:hover:shadow-gray-900/50 rounded-lg border border-gray-100 dark:border-gray-700",
         className,
       ].join(" ")}
     >
       {/* Image container */}
-      <a href={href} className="relative block aspect-[3/4] overflow-hidden bg-gray-50">
+      <a href={href} className="relative block aspect-[3/4] overflow-hidden bg-gray-50 dark:bg-gray-700">
         {/* Sale badge */}
         {discountLabel && (
-          <div className="absolute left-2 top-2 z-10 rounded-md bg-gray-900 px-2.5 py-1 text-xs font-bold text-white shadow-sm">
+          <div className="absolute left-2 top-2 z-10 rounded-md bg-gray-900 dark:bg-gray-700 px-2.5 py-1 text-xs font-bold text-white shadow-sm">
             {discountLabel}
           </div>
         )}

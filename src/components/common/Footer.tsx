@@ -7,7 +7,7 @@ export default function FooterShop() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-50 text-gray-700 border-t border-gray-200 mt-12">
+    <footer className="bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-800 mt-12 transition-colors">
       {/* Newsletter Section */}
       <section className="bg-gradient-to-br from-[#FF6347] to-[#FF8C69]">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-10">
@@ -35,7 +35,7 @@ export default function FooterShop() {
                 type="email"
                 required
                   placeholder="Entrez votre email"
-                  className="flex-1 rounded-full border-0 px-6 py-3 text-gray-900 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-white shadow-lg"
+                  className="flex-1 rounded-full border-0 px-6 py-3 text-gray-900 dark:text-white dark:bg-gray-800 placeholder:text-gray-500 dark:placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-white shadow-lg"
               />
               <button
                 type="submit"
@@ -53,7 +53,7 @@ export default function FooterShop() {
       </section>
 
       {/* Main Footer Content */}
-      <div className="bg-white">
+      <div className="bg-white dark:bg-gray-900 transition-colors">
         <nav className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-6">
           {/* Company Info */}
           <div className="col-span-2 lg:col-span-2">
@@ -62,7 +62,7 @@ export default function FooterShop() {
               alt="Z-SHOP"
               className="h-8 w-auto mb-4"
             />
-            <p className="text-sm text-gray-600 mb-4 max-w-xs">
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 max-w-xs">
               Votre destination shopping en ligne pour les dernières tendances de mode à Madagascar
             </p>
             <div className="flex items-center gap-3 mb-6">
@@ -76,7 +76,7 @@ export default function FooterShop() {
 
           {/* Shop */}
         <div>
-            <h4 className="text-sm font-bold text-gray-900 mb-4">Acheter</h4>
+            <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-4">Acheter</h4>
             <ul className="space-y-3 text-sm">
             {[
               "Vêtements",
@@ -87,7 +87,7 @@ export default function FooterShop() {
               "Maison",
             ].map((t) => (
               <li key={t}>
-                  <a className="text-gray-600 hover:text-[#FF6347] transition-colors" href="/products">
+                  <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors" href="/products">
                   {t}
                 </a>
               </li>
@@ -97,30 +97,30 @@ export default function FooterShop() {
 
           {/* Customer Service */}
         <div>
-            <h4 className="text-sm font-bold text-gray-900 mb-4">Service Client</h4>
+            <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-4">Service Client</h4>
             <ul className="space-y-3 text-sm">
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                   Centre d'aide
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Livraison & Suivi
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                   Retours
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Paiements
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 FAQ
               </a>
             </li>
@@ -129,30 +129,30 @@ export default function FooterShop() {
 
           {/* About */}
         <div>
-            <h4 className="text-sm font-bold text-gray-900 mb-4">À Propos</h4>
+            <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-4">À Propos</h4>
             <ul className="space-y-3 text-sm">
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                   Notre Histoire
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Carrières
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                   Partenaires
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Presse
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Contact
               </a>
             </li>
@@ -161,27 +161,27 @@ export default function FooterShop() {
 
           {/* Legal & Apps */}
         <div>
-            <h4 className="text-sm font-bold text-gray-900 mb-4">Informations</h4>
+            <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-4">Informations</h4>
             <ul className="space-y-3 text-sm mb-6">
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                   Conditions
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
-                  Confidentialité
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                Confidentialité
               </a>
             </li>
             <li>
-                <a className="text-gray-600 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Cookies
               </a>
             </li>
           </ul>
 
             {/* Payment methods */}
-            <h4 className="text-sm font-bold text-gray-900 mb-3">Paiement</h4>
+            <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-3">Paiement</h4>
             <div className="flex flex-wrap gap-2">
               {["visa", "mastercard", "mvola"].map((p) => (
                 <PaymentPill key={p} label={p} />
@@ -192,21 +192,21 @@ export default function FooterShop() {
           </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-gray-200 bg-gray-50">
+      <div className="border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 transition-colors">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               © {year} Z-SHOP. Tous droits réservés. Made with ❤️ in Madagascar
             </p>
-            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
               <a className="hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Accessibilité
               </a>
-              <span className="text-gray-300">•</span>
+              <span className="text-gray-300 dark:text-gray-600">•</span>
               <a className="hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Plan du site
               </a>
-              <span className="text-gray-300">•</span>
+              <span className="text-gray-300 dark:text-gray-600">•</span>
               <a className="hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Sécurité
               </a>
@@ -261,7 +261,7 @@ function Social({
     <a
       href={href}
       aria-label={icon}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-[#FF6347] hover:text-white transition-all hover:scale-110"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#FF6347] hover:text-white transition-all hover:scale-110"
     >
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
         {svg}
@@ -272,7 +272,7 @@ function Social({
 
 function PaymentPill({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center rounded-md border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold capitalize text-gray-700 shadow-sm">
+    <span className="inline-flex items-center rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-1.5 text-xs font-semibold capitalize text-gray-700 dark:text-gray-300 shadow-sm">
       {label}
     </span>
   );

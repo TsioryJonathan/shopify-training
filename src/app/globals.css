@@ -128,7 +128,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-300;
   }
   button {
     @apply cursor-pointer;
@@ -146,6 +146,15 @@
   select {
     @apply cursor-pointer;
   }
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-gray-700;
+}
+
+.dark ::-webkit-scrollbar-track {
+  @apply bg-gray-900;
 }
 
 body {

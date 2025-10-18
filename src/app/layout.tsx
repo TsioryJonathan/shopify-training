@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import FooterShop from "@/components/common/Footer";
 import CategoryNavbar from "@/components/common/CategoryNavbar";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -35,13 +36,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${clashGrotesk.variable} antialiased bg-white overflow-x-hidden`}
+        className={`${clashGrotesk.variable} antialiased overflow-x-hidden`}
       >
-        <Navbar />
-        <div className="w-full h-full">{children}</div>
-        <FooterShop />
+        <ThemeProvider>
+          <Navbar />
+          <div className="w-full h-full">{children}</div>
+          <FooterShop />
+        </ThemeProvider>
       </body>
     </html>
   );

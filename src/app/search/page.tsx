@@ -55,27 +55,27 @@ export default function SearchPage() {
             <div>
               <div className="flex items-center gap-3 mb-2">
                 <Search className="h-6 w-6 text-gray-400" />
-                <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+                <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white tracking-tight">
                   Résultats de recherche
                 </h1>
               </div>
               {queryFromUrl && (
-                <p className="text-sm text-gray-600">
-                  Recherche: <span className="font-semibold text-gray-900">"{queryFromUrl}"</span>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  Recherche: <span className="font-semibold text-gray-900 dark:text-white">"{queryFromUrl}"</span>
                 </p>
               )}
-              <p className="text-xs sm:text-sm text-gray-600 mt-1">
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">
                 {filteredProducts.length} produit{filteredProducts.length > 1 ? "s" : ""} trouvé{filteredProducts.length > 1 ? "s" : ""}
               </p>
             </div>
 
             {/* Sort Dropdown */}
             <div className="flex items-center gap-3">
-              <label className="text-xs sm:text-sm text-gray-600 whitespace-nowrap">
+              <label className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 whitespace-nowrap">
                 Trier par:
               </label>
               <select
-                className="flex-1 sm:flex-none rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-colors bg-white"
+                className="flex-1 sm:flex-none rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2 text-sm focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-colors bg-white"
                 onChange={handleSortChange}
               >
                 <option>Pertinence</option>
@@ -96,7 +96,7 @@ export default function SearchPage() {
         ) : (
           <div className="text-center py-12">
             <Search className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-            <p className="text-gray-500 text-lg font-semibold">Aucun produit trouvé</p>
+            <p className="text-gray-500 dark:text-gray-400 text-lg font-semibold">Aucun produit trouvé</p>
             <p className="text-gray-400 text-sm mt-2">
               {queryFromUrl
                 ? `Aucun résultat pour "${queryFromUrl}"`

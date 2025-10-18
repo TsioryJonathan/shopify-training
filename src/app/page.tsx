@@ -62,7 +62,7 @@ const mockPopularProducts = mockProducts.slice(0, 6);
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full flex flex-col pt-[136px]">
+    <div className="min-h-screen w-full flex flex-col pt-[136px] bg-white dark:bg-gray-900 transition-colors">
       {/* Category navbar */}
       <CategoryNavbar />
       

@@ -74,16 +74,16 @@ export default function Products() {
       </div>
 
       {/* Main Content */}
-      <div className="bg-white min-h-screen">
+      <div className="bg-white dark:bg-gray-900 min-h-screen transition-colors">
         {/* Header Section */}
-        <div className="border-b border-gray-100 bg-white px-4 py-6 sm:px-6 lg:px-8">
+        <div className="border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+                <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white tracking-tight">
                   {filters.category ? `Catégorie: ${filters.category}` : "Tous les produits"}
                 </h1>
-                <p className="text-xs sm:text-sm text-gray-600 mt-1">
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">
                   {filteredProducts.length} produit{filteredProducts.length > 1 ? "s" : ""} trouvé{filteredProducts.length > 1 ? "s" : ""}
                 </p>
               </div>
@@ -100,9 +100,9 @@ export default function Products() {
 
             {/* Sort Dropdown */}
             <div className="flex items-center gap-3">
-              <label className="text-xs sm:text-sm text-gray-600 whitespace-nowrap">Trier par:</label>
+              <label className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">Trier par:</label>
               <select 
-                className="flex-1 sm:flex-none rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-colors bg-white"
+                className="flex-1 sm:flex-none rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2 text-sm focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                 onChange={handleSortChange}
               >
                 <option>Pertinence</option>
@@ -116,11 +116,11 @@ export default function Products() {
 
           {/* Mobile Filters Banner */}
           {showMobileFilters && (
-            <div className="lg:hidden mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
-              <p className="text-sm text-gray-600 text-center">
+            <div className="lg:hidden mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+              <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
                 Les filtres sont disponibles sur la version desktop. 
                 <br />
-                <span className="text-xs text-gray-500">Utilisez un écran plus large pour accéder aux filtres avancés.</span>
+                <span className="text-xs text-gray-500 dark:text-gray-500">Utilisez un écran plus large pour accéder aux filtres avancés.</span>
               </p>
             </div>
           )}
@@ -132,8 +132,8 @@ export default function Products() {
             <ProductGrid data={filteredProducts} />
           ) : (
             <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">Aucun produit trouvé</p>
-              <p className="text-gray-400 text-sm mt-2">Essayez de modifier vos filtres</p>
+              <p className="text-gray-500 dark:text-gray-400 text-lg">Aucun produit trouvé</p>
+              <p className="text-gray-400 dark:text-gray-500 text-sm mt-2">Essayez de modifier vos filtres</p>
             </div>
           )}
         </div>
