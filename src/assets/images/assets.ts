@@ -12,8 +12,11 @@ import houseCategory from "./house.jpg";
 import shoesCategory from "./shoes.jpg";
 import beautyCategory from "./beauty.jpg";
 
+import productBanner from "./productBanner.png";
+
 const assets = {
   logoLight,
+  productBanner,
   logoDark,
   heroIllus1,
   heroIllus2,

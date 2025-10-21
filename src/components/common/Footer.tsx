@@ -7,20 +7,17 @@ export default function FooterShop() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-white text-neutral-700 border-t border-neutral-200">
-      {/* Top band: newsletter */}
-      <section className="bg-neutral-50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 grid gap-6 md:grid-cols-3">
-          <div>
-            <Image
-              src={assets.logoLight}
-              alt="Z-SHOP"
-              className="w-30 object-cover"
-            />
-            {/* <div className="text-2xl font-bold text-neutral-900">Z-SHOP</div> */}
-            <p className="mt-2 text-sm text-neutral-600">
-              Des produits sélectionnés avec soin, livrés rapidement partout à
-              Madagascar.
+    <footer className="bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-800 mt-12 transition-colors">
+      {/* Newsletter Section */}
+      <section className="bg-gradient-to-br from-[#FF6347] to-[#FF8C69]">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-10">
+          <div className="grid gap-6 md:grid-cols-3 items-center">
+            <div className="md:col-span-1">
+              <h3 className="text-2xl font-bold text-white mb-2">
+                Restez à la mode ! 👗
+              </h3>
+              <p className="text-white/90 text-sm">
+                Recevez les dernières tendances et offres exclusives
             </p>
           </div>
 
@@ -32,40 +29,55 @@ export default function FooterShop() {
             }}
             aria-label="Inscription newsletter"
           >
-            <label
-              htmlFor="newsletter"
-              className="block text-sm font-medium text-neutral-900"
-            >
-              Inscrivez-vous à notre newsletter
-            </label>
-            <div className="mt-2 flex flex-col gap-3 sm:flex-row">
+              <div className="flex flex-col sm:flex-row gap-3">
               <input
                 id="newsletter"
                 type="email"
                 required
-                placeholder="Votre email"
-                className="w-full rounded-lg border border-neutral-300 px-4 py-2.5 outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  placeholder="Entrez votre email"
+                  className="flex-1 rounded-full border-0 px-6 py-3 text-gray-900 dark:text-white dark:bg-gray-800 placeholder:text-gray-500 dark:placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-white shadow-lg"
               />
               <button
                 type="submit"
-                className="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-5 py-2.5 text-white font-medium hover:bg-emerald-700 transition"
+                  className="inline-flex items-center justify-center rounded-full bg-gray-900 px-8 py-3 text-white font-semibold hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 shadow-lg"
               >
-                S’abonner
+                  S'inscrire
               </button>
             </div>
-            <p className="mt-2 text-xs text-neutral-500">
-              En vous inscrivant, vous acceptez de recevoir nos emails. Vous
-              pouvez vous désinscrire à tout moment.
+              <p className="mt-3 text-xs text-white/80">
+                🎁 -10% sur votre première commande en vous inscrivant !
             </p>
           </form>
+          </div>
         </div>
       </section>
 
-      {/* Middle: link columns */}
-      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-6">
+      {/* Main Footer Content */}
+      <div className="bg-white dark:bg-gray-900 transition-colors">
+        <nav className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-6">
+          {/* Company Info */}
+          <div className="col-span-2 lg:col-span-2">
+            <Image
+              src={assets.logoLight}
+              alt="Z-SHOP"
+              className="h-8 w-auto mb-4"
+            />
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 max-w-xs">
+              Votre destination shopping en ligne pour les dernières tendances de mode à Madagascar
+            </p>
+            <div className="flex items-center gap-3 mb-6">
+              <Social icon="facebook" href="#" />
+              <Social icon="instagram" href="#" />
+              <Social icon="tiktok" href="#" />
+              <Social icon="x" href="#" />
+              <Social icon="youtube" href="#" />
+            </div>
+          </div>
+
+          {/* Shop */}
         <div>
-          <h4 className="text-sm font-semibold text-neutral-900">Catégories</h4>
-          <ul className="mt-4 space-y-2 text-sm">
+            <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-4">Acheter</h4>
+            <ul className="space-y-3 text-sm">
             {[
               "Vêtements",
               "Chaussures",
@@ -75,7 +87,7 @@ export default function FooterShop() {
               "Maison",
             ].map((t) => (
               <li key={t}>
-                <a className="hover:text-neutral-900" href={`/c/${slug(t)}`}>
+                  <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors" href="/products">
                   {t}
                 </a>
               </li>
@@ -83,190 +95,123 @@ export default function FooterShop() {
           </ul>
         </div>
 
+          {/* Customer Service */}
         <div>
-          <h4 className="text-sm font-semibold text-neutral-900">Aide</h4>
-          <ul className="mt-4 space-y-2 text-sm">
+            <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-4">Service Client</h4>
+            <ul className="space-y-3 text-sm">
             <li>
-              <a className="hover:text-neutral-900" href="/support">
-                Centre d’aide
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                  Centre d'aide
               </a>
             </li>
             <li>
-              <a className="hover:text-neutral-900" href="/shipping">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Livraison & Suivi
               </a>
             </li>
             <li>
-              <a className="hover:text-neutral-900" href="/returns">
-                Retours & Remboursements
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                  Retours
               </a>
             </li>
             <li>
-              <a className="hover:text-neutral-900" href="/payments">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Paiements
               </a>
             </li>
             <li>
-              <a className="hover:text-neutral-900" href="/faq">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 FAQ
               </a>
             </li>
           </ul>
         </div>
 
+          {/* About */}
         <div>
-          <h4 className="text-sm font-semibold text-neutral-900">Entreprise</h4>
-          <ul className="mt-4 space-y-2 text-sm">
+            <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-4">À Propos</h4>
+            <ul className="space-y-3 text-sm">
             <li>
-              <a className="hover:text-neutral-900" href="/about">
-                À propos
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                  Notre Histoire
               </a>
             </li>
             <li>
-              <a className="hover:text-neutral-900" href="/careers">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Carrières
               </a>
             </li>
             <li>
-              <a className="hover:text-neutral-900" href="/partners">
-                Devenir partenaire
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                  Partenaires
               </a>
             </li>
             <li>
-              <a className="hover:text-neutral-900" href="/press">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Presse
               </a>
             </li>
             <li>
-              <a className="hover:text-neutral-900" href="/contact">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Contact
               </a>
             </li>
           </ul>
         </div>
 
+          {/* Legal & Apps */}
         <div>
-          <h4 className="text-sm font-semibold text-neutral-900">Légal</h4>
-          <ul className="mt-4 space-y-2 text-sm">
+            <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-4">Informations</h4>
+            <ul className="space-y-3 text-sm mb-6">
             <li>
-              <a className="hover:text-neutral-900" href="/terms">
-                Conditions d’utilisation
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                  Conditions
               </a>
             </li>
             <li>
-              <a className="hover:text-neutral-900" href="/privacy">
-                Politique de confidentialité
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                Confidentialité
               </a>
             </li>
             <li>
-              <a className="hover:text-neutral-900" href="/cookies">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Cookies
               </a>
             </li>
-            <li>
-              <a className="hover:text-neutral-900" href="/legal">
-                Mentions légales
-              </a>
-            </li>
-            <li>
-              <a className="hover:text-neutral-900" href="/compliance">
-                Conformité
-              </a>
-            </li>
           </ul>
-        </div>
 
-        <div className="lg:col-span-2">
-          <h4 className="text-sm font-semibold text-neutral-900">
-            Rejoignez-nous
-          </h4>
-          <div className="mt-4 flex items-center gap-3">
-            <Social icon="facebook" href="#" />
-            <Social icon="instagram" href="#" />
-            <Social icon="tiktok" href="#" />
-            <Social icon="x" href="#" />
-            <Social icon="youtube" href="#" />
-          </div>
-
-          <h4 className="mt-8 text-sm font-semibold text-neutral-900">
-            Moyens de paiement
-          </h4>
-          <div className="mt-3 flex flex-wrap items-center gap-2">
-            {["visa", "mastercard", "paypal", "mvola", "orange", "airtel"].map(
-              (p) => (
+            {/* Payment methods */}
+            <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-3">Paiement</h4>
+            <div className="flex flex-wrap gap-2">
+              {["visa", "mastercard", "mvola"].map((p) => (
                 <PaymentPill key={p} label={p} />
-              )
-            )}
+              ))}
+            </div>
           </div>
-
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:max-w-sm">
-            <a
-              href="#"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-neutral-300 px-4 py-2 text-sm font-medium hover:bg-neutral-50"
-            >
-              {/* App Store icon */}
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M12 2c2.3 0 2.6 0 3.5.1 2 .2 3 .9 3.8 1.7.8.8 1.5 1.8 1.7 3.8.1.9.1 1.2.1 3.5s0 2.6-.1 3.5c-.2 2-1 3-1.7 3.8-.8.8-1.8 1.5-3.8 1.7-.9.1-1.2.1-3.5.1s-2.6 0-3.5-.1c-2-.2-3-.9-3.8-1.7-.8-.8-1.5-1.8-1.7-3.8C3 14.6 3 14.3 3 12s0-2.6.1-3.5c.2-2 1-3 1.7-3.8C5.6 3.9 6.6 3.2 8.6 3c.9-.1 1.2-.1 3.4-.1H12Z" />
-              </svg>
-              App Store
-            </a>
-            <a
-              href="#"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-neutral-300 px-4 py-2 text-sm font-medium hover:bg-neutral-50"
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="m1 21 22-9L1 3v7l15 1-15 3v7z" />
-              </svg>
-              Google Play
-            </a>
+        </nav>
           </div>
-
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            {/* langue/devise */}
-            <SelectLike label="Français (MG)" />
-            <SelectLike label="MGA – Ariary" />
-          </div>
-        </div>
-      </nav>
 
       {/* Bottom bar */}
-      <div className="border-t border-neutral-200">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-          <p className="text-sm text-neutral-500">
-            © {year} Z-SHOP. Tous droits réservés.
-          </p>
-          <ul className="flex flex-wrap items-center gap-4 text-sm">
-            <li>
-              <a className="hover:text-neutral-900" href="/accessibility">
+      <div className="border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 transition-colors">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              © {year} Z-SHOP. Tous droits réservés. Made with ❤️ in Madagascar
+            </p>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+              <a className="hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Accessibilité
               </a>
-            </li>
-            <li>
-              <a className="hover:text-neutral-900" href="/sitemap">
+              <span className="text-gray-300 dark:text-gray-600">•</span>
+              <a className="hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Plan du site
               </a>
-            </li>
-            <li>
-              <a className="hover:text-neutral-900" href="/security">
+              <span className="text-gray-300 dark:text-gray-600">•</span>
+              <a className="hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
                 Sécurité
               </a>
-            </li>
-            <li>
-              <a className="hover:text-neutral-900" href="/status">
-                Statut
-              </a>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
@@ -316,9 +261,9 @@ function Social({
     <a
       href={href}
       aria-label={icon}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-neutral-300 text-neutral-700 hover:bg-neutral-100"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#FF6347] hover:text-white transition-all hover:scale-110"
     >
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
         {svg}
       </svg>
     </a>
@@ -327,29 +272,9 @@ function Social({
 
 function PaymentPill({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center rounded-md border border-neutral-300 bg-white px-2.5 py-1 text-xs font-medium capitalize">
+    <span className="inline-flex items-center rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-1.5 text-xs font-semibold capitalize text-gray-700 dark:text-gray-300 shadow-sm">
       {label}
     </span>
   );
 }
 
-function SelectLike({ label }: { label: string }) {
-  return (
-    <button
-      type="button"
-      className="inline-flex items-center gap-2 rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm hover:bg-neutral-50"
-      aria-haspopup="listbox"
-      aria-label={label}
-    >
-      {label}
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        className="text-neutral-500"
-      >
-        <path d="M7 10l5 5 5-5H7z" fill="currentColor" />
-      </svg>
-    </button>
-  );
-}

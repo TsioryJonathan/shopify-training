@@ -1,118 +1,199 @@
 "use client";
 
+// components/ProductCardShop.tsx - Shein-inspired design
 import Image, { StaticImageData } from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import { Heart, ShoppingCart, Star } from "lucide-react";
+import { useWishlistStore } from "@/stores/useWishlistStore";
+import { useCartStore } from "@/stores/useCartStore";
+
+type Thumb = { src: string; alt?: string };
 
 type Props = {
-  id: string | number;
+  id: string;
   title: string;
-  price: string;          // ex: "89 900 Ar"
+  category: string;
+  price: string;
+  oldPrice?: string;
+  discountLabel?: string;
   image: string | StaticImageData;
+  thumbnails?: Thumb[];
   href: string;
-  rating?: number;        // 0..5
-  reviewsCount?: number;  // ex: 213
+  rating?: number;
+  reviewsCount?: number;
   onAdd?: () => void;
   onWish?: () => void;
   className?: string;
 };
 
 export default function ProductCardShop({
-  id, title, price, image, href,
-  rating = 4.5, reviewsCount = 128,
-  onAdd, onWish, className = "",
+  id,
+  title,
+  category,
+  price,
+  oldPrice,
+  discountLabel,
+  image,
+  thumbnails = [],
+  href,
+  rating,
+  reviewsCount,
+  onAdd,
+  onWish,
+  className = "",
 }: Props) {
-  const full = Math.floor(rating);
-  const half = rating - full >= 0.25 && rating - full < 0.75;
+  const [activeIdx, setActiveIdx] = useState(0);
+  const gallery = thumbnails.length ? thumbnails : [{ src: image, alt: title }];
+  
+  const toggleWishlist = useWishlistStore((state) => state.toggleItem);
+  const isInWishlist = useWishlistStore((state) => state.isInWishlist(id));
+  const addToCart = useCartStore((state) => state.addItem);
+
+  const active = gallery[Math.min(activeIdx, gallery.length - 1)];
+
+  const handleWish = (e: React.MouseEvent) => {
+    e.preventDefault();
+    toggleWishlist({ id, title, category, price, oldPrice, image, href, rating, reviewsCount });
+    onWish?.();
+  };
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    addToCart({ id, title, category, price, oldPrice, image, href, rating, reviewsCount }, 1);
+    onAdd?.();
+  };
 
   return (
     <article
       key={id}
       className={[
-        "group relative flex w-[260px] flex-col rounded-xl bg-white",
-        "border border-neutral-200/80 shadow-sm transition-all",
-        "hover:shadow-md hover:-translate-y-0.5",
+        "group relative w-full max-w-[280px] bg-white dark:bg-gray-800 overflow-hidden",
+        "transition-all duration-300 hover:shadow-md dark:hover:shadow-gray-900/50 rounded-lg border border-gray-100 dark:border-gray-700",
         className,
       ].join(" ")}
     >
-      {/* Image */}
-      <a href={href} className="relative block h-[180px] overflow-hidden rounded-t-xl bg-neutral-50">
+      {/* Image container */}
+      <a href={href} className="relative block aspect-[3/4] overflow-hidden bg-gray-50 dark:bg-gray-700">
+        {/* Sale badge */}
+        {discountLabel && (
+          <div className="absolute left-2 top-2 z-10 rounded-md bg-gray-900 dark:bg-gray-700 px-2.5 py-1 text-xs font-bold text-white shadow-sm">
+            {discountLabel}
+          </div>
+        )}
+
+        {/* Wishlist button */}
+        <button
+          onClick={handleWish}
+          className="absolute right-2 top-2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur-sm shadow-sm transition-all hover:bg-white hover:scale-105"
+          aria-label="Ajouter aux favoris"
+        >
+          <Heart
+            className={`h-4 w-4 transition-colors ${
+              isInWishlist ? "fill-rose-500 text-rose-500" : "text-gray-600"
+            }`}
+          />
+        </button>
+
+        {/* Product image */}
         <Image
-          src={image}
-          alt={title}
-          fill
-          sizes="260px"
-          className="object-contain p-4 transition-transform duration-300 group-hover:scale-[1.02]"
-          priority={false}
+          src={active?.src || image}
+          alt={active?.alt || title}
+          width={280}
+          height={373}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
+
+        {/* Quick add overlay (appears on hover) */}
+        <div className="absolute inset-x-0 bottom-0 translate-y-full bg-gradient-to-t from-black/60 to-transparent p-4 transition-transform duration-300 group-hover:translate-y-0">
+          <button
+            onClick={handleAddToCart}
+            className="flex w-full items-center justify-center gap-2 rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-gray-900 transition-all hover:bg-gray-100"
+          >
+            <ShoppingCart className="h-4 w-4" />
+            Ajouter au panier
+          </button>
+        </div>
       </a>
 
-      {/* Wishlist */}
-      <button
-        onClick={(e) => { e.preventDefault(); onWish?.(); }}
-        aria-label="Ajouter aux favoris"
-        className="absolute right-2 top-2 inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200/80 bg-white/90 text-neutral-700 hover:bg-white"
-      >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path d="M12.1 20.3S3 15 3 8.9A4.4 4.4 0 0 1 7.4 4.5 5 5 0 0 1 12 7a5 5 0 0 1 4.6-2.5 4.4 4.4 0 0 1 4.4 4.4c0 6.1-9 11.4-9 11.4Z"
-                stroke="currentColor" strokeWidth="1.5" />
-        </svg>
-      </button>
+      {/* Product info */}
+      <div className="p-3">
+        {/* Category */}
+        {category && (
+          <p className="mb-1 text-xs text-gray-500 uppercase tracking-wide">
+            {category}
+          </p>
+        )}
 
-      {/* Contenu bas */}
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <a href={href} className="line-clamp-2 text-[15px] font-medium text-neutral-900 hover:underline underline-offset-4">
+        {/* Title */}
+        <a
+          href={href}
+          className="block mb-2 text-sm font-medium text-gray-900 line-clamp-2 hover:text-gray-600 transition-colors"
+        >
           {title}
         </a>
 
-        {/* Rating + nombre d’avis */}
-        <div className="flex items-center gap-1.5 text-xs text-neutral-600">
-          <div className="flex items-center text-emerald-600">
-            {Array.from({ length: full }).map((_, i) => <Star key={`f-${i}`} />)}
-            {half && <Star half />}
-            {Array.from({ length: 5 - full - (half ? 1 : 0) }).map((_, i) => <Star key={`e-${i}`} empty />)}
+        {/* Rating */}
+        {rating && (
+          <div className="flex items-center gap-1 mb-2">
+            <div className="flex items-center">
+              {[...Array(5)].map((_, i) => (
+                <Star
+                  key={i}
+                  className={`h-3 w-3 ${
+                    i < Math.floor(rating)
+                      ? "fill-yellow-400 text-yellow-400"
+                      : "fill-gray-200 text-gray-200"
+                  }`}
+                />
+              ))}
+            </div>
+            {reviewsCount && (
+              <span className="text-xs text-gray-500">({reviewsCount})</span>
+            )}
           </div>
-          <span className="text-neutral-400">({reviewsCount})</span>
+        )}
+
+        {/* Price */}
+        <div className="flex items-center gap-2">
+          <span className="text-lg font-bold text-gray-900">{price}</span>
+          {oldPrice && (
+            <span className="text-sm text-gray-400 line-through">{oldPrice}</span>
+          )}
         </div>
 
-        {/* Bas: prix + bouton */}
-        <div className="mt-auto flex items-center justify-between">
-          <div className="text-[15px] font-semibold text-neutral-900">{price}</div>
-
-          <button
-            onClick={(e) => { e.preventDefault(); onAdd?.(); }}
-            className="inline-flex items-center rounded-lg border border-neutral-200 bg-white px-3 py-2 text-xs font-medium text-neutral-900 hover:bg-neutral-50"
-          >
-            Add to Cart
-          </button>
-        </div>
+        {/* Color options / Thumbnails */}
+        {gallery.length > 1 && (
+          <div className="mt-3 flex items-center gap-1.5">
+        {gallery.slice(0, 5).map((t, i) => {
+          const selected = i === activeIdx;
+          return (
+            <button
+              key={i}
+              onClick={() => setActiveIdx(i)}
+                  className={[
+                    "relative h-6 w-6 overflow-hidden rounded border-2 transition-all",
+                    selected
+                      ? "border-gray-900 scale-110"
+                      : "border-gray-200 hover:border-gray-400",
+                  ].join(" ")}
+              aria-pressed={selected}
+              title={t.alt || title}
+            >
+              <Image
+                src={t.src}
+                alt={t.alt || title}
+                fill
+                    className="object-cover"
+              />
+            </button>
+          );
+        })}
+        {gallery.length > 5 && (
+              <span className="text-xs text-gray-500">+{gallery.length - 5}</span>
+            )}
+          </div>
+        )}
       </div>
     </article>
-  );
-}
-
-/* --- petite étoile verte --- */
-function Star({ empty, half }: { empty?: boolean; half?: boolean }) {
-  if (half) {
-    return (
-      <svg width="14" height="14" viewBox="0 0 24 24" className="fill-emerald-600">
-        <defs>
-          <linearGradient id="halfStar" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="50%" stopColor="currentColor" />
-            <stop offset="50%" stopColor="transparent" />
-          </linearGradient>
-        </defs>
-        <path d="m12 17.27 6.18 3.73-1.64-7.03L21.5 9.24l-7.19-.61L12 2 9.69 8.63 2.5 9.24l4.96 4.73-1.64 7.03L12 17.27Z"
-              fill="url(#halfStar)" stroke="currentColor" strokeWidth="0.5" />
-      </svg>
-    );
-  }
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24"
-         className={empty ? "text-emerald-600" : "fill-emerald-600 text-emerald-600"}>
-      <path
-        d="m12 17.27 6.18 3.73-1.64-7.03L21.5 9.24l-7.19-.61L12 2 9.69 8.63 2.5 9.24l4.96 4.73-1.64 7.03L12 17.27Z"
-        fill={empty ? "none" : "currentColor"} stroke="currentColor" strokeWidth="0.5"
-      />
-    </svg>
   );
 }

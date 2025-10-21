@@ -11,20 +11,20 @@ export default function Carousel({ slides }: { slides: React.ReactNode[] }) {
   return (
     <Swiper
       modules={[Navigation, Autoplay]}
-      spaceBetween={50}
+      spaceBetween={0}
       slidesPerView={1}
       loop={true}
       autoplay={{
-        delay: 3000,
+        delay: 5000,
         disableOnInteraction: false,
       }}
       navigation
-      className="w-full relative h-full"
+      className="w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden"
     >
       {slides?.map((slide, index) => (
         <SwiperSlide
           key={index}
-          className="flex justify-center items-center w-full"
+          className="flex justify-center items-center w-full h-full"
         >
           {slide}
         </SwiperSlide>
