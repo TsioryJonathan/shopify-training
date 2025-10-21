@@ -7,6 +7,7 @@ import { useCartStore } from "@/stores/useCartStore";
 import { useWishlistStore } from "@/stores/useWishlistStore";
 import { User, Mail, Phone, MapPin, Calendar, ShoppingBag, Heart, Package } from "lucide-react";
 import Image from "next/image";
+import assets from "@/assets/images/assets";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -56,7 +57,7 @@ export default function ProfilePage() {
               <div className="h-32 w-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-lg">
                 {user.avatar ? (
                   <Image
-                    src={user.avatar}
+                    src={assets.beautyCategory}
                     alt={user.name}
                     width={128}
                     height={128}
