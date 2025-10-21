@@ -99,7 +99,7 @@ export default function WalletPage() {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
             {/* Balance Card */}
-            <div className="bg-gradient-to-br from-[#FF6347] to-[#FF8C69] rounded-xl shadow-lg p-8 text-white">
+            <div className="bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] rounded-xl shadow-lg p-8 text-white">
               <div className="flex items-start justify-between mb-6">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
@@ -123,7 +123,7 @@ export default function WalletPage() {
               </div>
 
               <div className="flex gap-3">
-                <button className="flex-1 bg-white text-[#FF6347] py-3 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 dark:bg-gray-900 transition-colors flex items-center justify-center gap-2">
+                <button className="flex-1 bg-white text-[#6366F1] py-3 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 dark:bg-gray-900 transition-colors flex items-center justify-center gap-2">
                   <ArrowUpRight className="h-5 w-5" />
                   Retirer
                 </button>
@@ -151,7 +151,7 @@ export default function WalletPage() {
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                     placeholder="Entrez le montant"
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none"
+                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none"
                   />
                 </div>
 
@@ -164,7 +164,7 @@ export default function WalletPage() {
                       <button
                         key={qa}
                         onClick={() => setAmount(qa.toString())}
-                        className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-[#FF6347] hover:bg-[#FF6347]/5 transition-colors text-sm font-medium"
+                        className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-[#6366F1] hover:bg-[#6366F1]/5 transition-colors text-sm font-medium"
                       >
                         {(qa / 1000).toLocaleString()}K
                       </button>
@@ -182,7 +182,7 @@ export default function WalletPage() {
                   <button
                     onClick={handleAddFunds}
                     disabled={!amount || parseFloat(amount) <= 0}
-                    className="flex-1 px-6 py-3 bg-[#FF6347] text-white rounded-lg font-semibold hover:bg-[#E55347] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 px-6 py-3 bg-[#6366F1] text-white rounded-lg font-semibold hover:bg-[#5B21B6] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Confirmer
                   </button>
@@ -261,7 +261,7 @@ export default function WalletPage() {
                   </div>
                 </div>
 
-                <button className="w-full flex items-center justify-center gap-2 p-3 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-lg text-gray-600 dark:text-gray-300 hover:border-[#FF6347] hover:text-[#FF6347] transition-colors">
+                <button className="w-full flex items-center justify-center gap-2 p-3 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-lg text-gray-600 dark:text-gray-300 hover:border-[#6366F1] hover:text-[#6366F1] transition-colors">
                   <Plus className="h-5 w-5" />
                   <span className="font-medium">Ajouter une carte</span>
                 </button>

@@ -24,7 +24,7 @@ export const darkModeClasses = {
   
   // Inputs
   input: "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500",
-  inputFocus: "focus:border-[#FF6347] focus:ring-[#FF6347] dark:focus:border-[#FF6347] dark:focus:ring-[#FF6347]",
+  inputFocus: "focus:border-[#6366F1] focus:ring-[#6366F1] dark:focus:border-[#6366F1] dark:focus:ring-[#6366F1]",
   
   // Buttons
   btnSecondary: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700",

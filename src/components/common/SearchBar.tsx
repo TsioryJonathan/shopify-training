@@ -45,7 +45,7 @@ export default function SearchBar({
           placeholder={placeholder}
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className="w-full rounded-full bg-gray-50 pl-10 pr-4 h-10 text-sm border-gray-200 focus:border-[#FF6347] focus:ring-1 focus:ring-[#FF6347] focus:bg-white transition-all"
+          className="w-full rounded-full bg-gray-50 pl-10 pr-4 h-10 text-sm border-gray-200 focus:border-[#6366F1] focus:ring-1 focus:ring-[#6366F1] focus:bg-white transition-all"
         />
       </div>
     </form>

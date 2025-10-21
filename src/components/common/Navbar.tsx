@@ -3,18 +3,17 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ShoppingBag, Search, User, Heart, Menu, Wallet, Settings, LogOut, Package } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
-import assets from "@/assets/images/assets";
 import { Button } from "@/components/ui/button";
 import SearchBar from "./SearchBar";
 import { ThemeToggle } from "./ThemeToggle";
 import { useCartStore } from "@/stores/useCartStore";
 import { useWishlistStore } from "@/stores/useWishlistStore";
 import { useAuthStore } from "@/stores/useAuthStore";
+import Logo from "./Logo";
 
 // Shein-style action icon component
 const ActionIcon = ({
@@ -33,9 +32,9 @@ const ActionIcon = ({
     className="relative p-2 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-full transition-all duration-200 group"
     aria-label={label}
   >
-    <Icon className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:text-[#FF6347] transition-colors" />
+    <Icon className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:text-[#6366F1] transition-colors" />
     {itemCount !== undefined && itemCount > 0 && (
-      <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FF6347] text-[10px] font-semibold text-white">
+      <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#6366F1] text-[10px] font-semibold text-white">
         {itemCount}
       </span>
     )}
@@ -48,9 +47,32 @@ const Navbar = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   
-  const cartItemsCount = useCartStore((state) => state.getTotalItems());
-  const wishlistItemsCount = useWishlistStore((state) => state.items.length);
+  // Fix hydration issue: use local state and update after mount
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+  const [wishlistItemsCount, setWishlistItemsCount] = useState(0);
+  const [mounted, setMounted] = useState(false);
+  
   const { user, isAuthenticated, logout } = useAuthStore();
+
+  // Sync counts after component mounts to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+    const updateCounts = () => {
+      setCartItemsCount(useCartStore.getState().getTotalItems());
+      setWishlistItemsCount(useWishlistStore.getState().items.length);
+    };
+    
+    updateCounts();
+    
+    // Subscribe to store changes
+    const unsubscribeCart = useCartStore.subscribe(updateCounts);
+    const unsubscribeWishlist = useWishlistStore.subscribe(updateCounts);
+    
+    return () => {
+      unsubscribeCart();
+      unsubscribeWishlist();
+    };
+  }, []);
 
   const handleNavigation = (path: string) => router.push(path);
 
@@ -80,7 +102,7 @@ const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm transition-colors">
       {/* Top banner for promos (Shein-style) */}
-      <div className="bg-gradient-to-r from-[#FF6347] to-[#FF8C69] text-white text-center py-2 px-4">
+      <div className="bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] text-white text-center py-2 px-4">
         <p className="text-xs sm:text-sm font-medium">
           🔥 VENTE FLASH: Jusqu'à -70% sur une sélection d'articles | Livraison GRATUITE dès 50 000 Ar
         </p>
@@ -92,28 +114,24 @@ const Navbar = () => {
             {/* Left: Logo */}
             <div className="flex items-center gap-8">
               <Link href="/" aria-label="Page d'accueil de Z-SHOP" className="flex-shrink-0">
-                <Image
-                  src={assets.logoLight}
-                  alt="Z-shop Logo"
-                  className="h-10 w-auto object-contain"
-                />
+                <Logo className="h-10 w-auto object-contain" />
               </Link>
 
               {/* Desktop navigation links */}
               <div className="hidden lg:flex items-center gap-6">
-                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF6347] transition-colors">
+                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#6366F1] transition-colors">
                   NOUVEAUTÉS
                 </Link>
-                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF6347] transition-colors">
+                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#6366F1] transition-colors">
                   FEMMES
                 </Link>
-                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF6347] transition-colors">
+                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#6366F1] transition-colors">
                   HOMMES
                 </Link>
-                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF6347] transition-colors">
+                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#6366F1] transition-colors">
                   ENFANTS
                 </Link>
-                <Link href="/products" className="text-sm font-bold text-[#FF6347] hover:text-[#E55347] transition-colors">
+                <Link href="/products" className="text-sm font-bold text-[#6366F1] hover:text-[#5B21B6] transition-colors">
                   VENTES 🔥
                 </Link>
               </div>
@@ -161,10 +179,10 @@ const Navbar = () => {
                     <img
                       src={user.avatar}
                       alt={user.name}
-                      className="h-8 w-8 rounded-full border-2 border-gray-200 dark:border-gray-700 group-hover:border-[#FF6347] transition-colors"
+                      className="h-8 w-8 rounded-full border-2 border-gray-200 dark:border-gray-700 group-hover:border-[#6366F1] transition-colors"
                     />
                   ) : (
-                    <User className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:text-[#FF6347] transition-colors" />
+                    <User className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:text-[#6366F1] transition-colors" />
                   )}
                 </button>
 
@@ -278,19 +296,19 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="lg:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-lg">
           <div className="px-4 py-4 space-y-3">
-            <Link href="/products" className="block py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF6347]">
+            <Link href="/products" className="block py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#6366F1]">
               NOUVEAUTÉS
             </Link>
-            <Link href="/products" className="block py-2 text-sm font-medium text-gray-700 hover:text-[#FF6347]">
+            <Link href="/products" className="block py-2 text-sm font-medium text-gray-700 hover:text-[#6366F1]">
               FEMMES
             </Link>
-            <Link href="/products" className="block py-2 text-sm font-medium text-gray-700 hover:text-[#FF6347]">
+            <Link href="/products" className="block py-2 text-sm font-medium text-gray-700 hover:text-[#6366F1]">
               HOMMES
             </Link>
-            <Link href="/products" className="block py-2 text-sm font-medium text-gray-700 hover:text-[#FF6347]">
+            <Link href="/products" className="block py-2 text-sm font-medium text-gray-700 hover:text-[#6366F1]">
               ENFANTS
             </Link>
-            <Link href="/products" className="block py-2 text-sm font-bold text-[#FF6347]">
+            <Link href="/products" className="block py-2 text-sm font-bold text-[#6366F1]">
               VENTES 🔥
             </Link>
           </div>

@@ -92,7 +92,7 @@ export default function OrdersPage() {
       <div className="max-w-[1400px] mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Mes Commandes</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Mes Commandes</h1>
           <p className="text-gray-600">Suivez l'état de vos commandes et votre historique d'achats</p>
         </div>
 
@@ -109,7 +109,7 @@ export default function OrdersPage() {
                     {/* Order Info */}
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-3">
-                        <h3 className="text-lg font-bold text-gray-900">{order.orderNumber}</h3>
+                        <h3 className="text-lg font-bold text-gray-900 dark:text-white">{order.orderNumber}</h3>
                         <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium ${status.color}`}>
                           <StatusIcon className="h-4 w-4" />
                           {status.label}
@@ -119,19 +119,19 @@ export default function OrdersPage() {
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                         <div>
                           <div className="text-gray-600 mb-1">Date</div>
-                          <div className="font-medium text-gray-900">
+                          <div className="font-medium text-gray-900 dark:text-white">
                             {order.date.toLocaleDateString("fr-FR")}
                           </div>
                         </div>
 
                         <div>
                           <div className="text-gray-600 mb-1">Articles</div>
-                          <div className="font-medium text-gray-900">{order.items} article(s)</div>
+                          <div className="font-medium text-gray-900 dark:text-white">{order.items} article(s)</div>
                         </div>
 
                         <div>
                           <div className="text-gray-600 mb-1">Total</div>
-                          <div className="font-medium text-gray-900">
+                          <div className="font-medium text-gray-900 dark:text-white">
                             {order.total.toLocaleString("fr-FR")} Ar
                           </div>
                         </div>
@@ -139,7 +139,7 @@ export default function OrdersPage() {
                         {order.trackingNumber && (
                           <div>
                             <div className="text-gray-600 mb-1">Suivi</div>
-                            <div className="font-medium text-gray-900">{order.trackingNumber}</div>
+                            <div className="font-medium text-gray-900 dark:text-white">{order.trackingNumber}</div>
                           </div>
                         )}
                       </div>
@@ -164,11 +164,11 @@ export default function OrdersPage() {
         ) : (
           <div className="bg-white rounded-xl shadow-sm p-12 text-center">
             <Package className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-gray-900 mb-2">Aucune commande</h2>
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Aucune commande</h2>
             <p className="text-gray-600 mb-6">Vous n'avez pas encore passé de commande</p>
             <button
               onClick={() => router.push("/products")}
-              className="inline-block px-6 py-3 bg-[#FF6347] text-white rounded-lg font-semibold hover:bg-[#E55347] transition-colors"
+              className="inline-block px-6 py-3 bg-[#6366F1] text-white rounded-lg font-semibold hover:bg-[#5B21B6] transition-colors"
             >
               Découvrir nos produits
             </button>

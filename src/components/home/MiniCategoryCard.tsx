@@ -40,7 +40,7 @@ export default function MiniCategoryCard({
       </div>
 
       {/* Hover effect */}
-      <div className="absolute inset-0 bg-[#FF6347]/0 group-hover:bg-[#FF6347]/10 transition-colors duration-300" />
+      <div className="absolute inset-0 bg-[#6366F1]/0 group-hover:bg-[#6366F1]/10 transition-colors duration-300" />
     </div>
   );
 }

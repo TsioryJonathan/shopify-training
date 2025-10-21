@@ -24,7 +24,7 @@ export default function CategoryRounded({
       onClick={() => handleClick(label)}
     >
       {/* Category Image Circle */}
-      <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-gray-100 shadow-sm group-hover:shadow-md group-hover:border-[#FF6347] transition-all duration-300">
+      <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-gray-100 shadow-sm group-hover:shadow-md group-hover:border-[#6366F1] transition-all duration-300">
         <Image
           src={image}
           alt={label}
@@ -35,7 +35,7 @@ export default function CategoryRounded({
       </div>
 
       {/* Label */}
-      <p className="text-xs md:text-sm font-medium text-gray-700 text-center group-hover:text-[#FF6347] transition-colors duration-300 line-clamp-1">
+      <p className="text-xs md:text-sm font-medium text-gray-700 text-center group-hover:text-[#6366F1] transition-colors duration-300 line-clamp-1">
         {label}
       </p>
     </div>

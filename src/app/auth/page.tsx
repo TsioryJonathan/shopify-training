@@ -51,7 +51,7 @@ export default function AuthPage() {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           {/* Left side - Branding */}
           <div className="hidden md:block">
-            <div className="bg-gradient-to-br from-[#FF6347] to-[#FF8C69] rounded-2xl p-12 text-white shadow-2xl">
+            <div className="bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] rounded-2xl p-12 text-white shadow-2xl">
               <div className="flex items-center gap-3 mb-8">
                 <ShoppingBag className="h-12 w-12" />
                 <h1 className="text-4xl font-bold">Z-SHOP</h1>
@@ -117,7 +117,7 @@ export default function AuthPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
-                      className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                       placeholder="Jean Dupont"
                     />
                   </div>
@@ -136,7 +136,7 @@ export default function AuthPage() {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     placeholder="vous@exemple.com"
                   />
                 </div>
@@ -154,7 +154,7 @@ export default function AuthPage() {
                     onChange={(e) =>
                       setFormData({ ...formData, password: e.target.value })
                     }
-                    className="w-full pl-11 pr-12 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full pl-11 pr-12 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     placeholder="••••••••"
                   />
                   <button
@@ -176,11 +176,11 @@ export default function AuthPage() {
                   <label className="flex items-center gap-2">
                     <input
                       type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-[#FF6347] focus:ring-[#FF6347]"
+                      className="h-4 w-4 rounded border-gray-300 dark:border-gray-600 text-[#6366F1] focus:ring-[#6366F1]"
                     />
                     <span className="text-sm text-gray-600 dark:text-gray-300">Se souvenir de moi</span>
                   </label>
-                  <a href="#" className="text-sm font-medium text-[#FF6347] hover:text-[#E55347]">
+                  <a href="#" className="text-sm font-medium text-[#6366F1] hover:text-[#5B21B6]">
                     Mot de passe oublié?
                   </a>
                 </div>
@@ -208,7 +208,7 @@ export default function AuthPage() {
                     setError("");
                     setFormData({ name: "", email: "", password: "" });
                   }}
-                  className="ml-2 font-semibold text-[#FF6347] hover:text-[#E55347]"
+                  className="ml-2 font-semibold text-[#6366F1] hover:text-[#5B21B6]"
                 >
                   {isLogin ? "Créer un compte" : "Se connecter"}
                 </button>

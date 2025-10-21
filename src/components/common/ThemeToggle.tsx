@@ -27,9 +27,9 @@ export function ThemeToggle() {
       aria-label="Toggle theme"
     >
       {currentTheme === "dark" ? (
-        <Sun className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:text-[#FF6347] transition-colors" />
+        <Sun className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:text-[#6366F1] transition-colors" />
       ) : (
-        <Moon className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:text-[#FF6347] transition-colors" />
+        <Moon className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:text-[#6366F1] transition-colors" />
       )}
     </button>
   );

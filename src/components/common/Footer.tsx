@@ -9,7 +9,7 @@ export default function FooterShop() {
   return (
     <footer className="bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-800 mt-12 transition-colors">
       {/* Newsletter Section */}
-      <section className="bg-gradient-to-br from-[#FF6347] to-[#FF8C69]">
+      <section className="bg-gradient-to-br from-[#6366F1] to-[#8B5CF6]">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-10">
           <div className="grid gap-6 md:grid-cols-3 items-center">
             <div className="md:col-span-1">
@@ -87,7 +87,7 @@ export default function FooterShop() {
               "Maison",
             ].map((t) => (
               <li key={t}>
-                  <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors" href="/products">
+                  <a className="text-gray-600 dark:text-gray-400 hover:text-[#6366F1] transition-colors" href="/products">
                   {t}
                 </a>
               </li>
@@ -100,27 +100,27 @@ export default function FooterShop() {
             <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-4">Service Client</h4>
             <ul className="space-y-3 text-sm">
             <li>
-                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                   Centre d'aide
               </a>
             </li>
             <li>
-                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                 Livraison & Suivi
               </a>
             </li>
             <li>
-                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                   Retours
               </a>
             </li>
             <li>
-                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                 Paiements
               </a>
             </li>
             <li>
-                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                 FAQ
               </a>
             </li>
@@ -132,27 +132,27 @@ export default function FooterShop() {
             <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-4">À Propos</h4>
             <ul className="space-y-3 text-sm">
             <li>
-                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                   Notre Histoire
               </a>
             </li>
             <li>
-                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                 Carrières
               </a>
             </li>
             <li>
-                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                   Partenaires
               </a>
             </li>
             <li>
-                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                 Presse
               </a>
             </li>
             <li>
-                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                 Contact
               </a>
             </li>
@@ -164,17 +164,17 @@ export default function FooterShop() {
             <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-4">Informations</h4>
             <ul className="space-y-3 text-sm mb-6">
             <li>
-                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                   Conditions
               </a>
             </li>
             <li>
-                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                 Confidentialité
               </a>
             </li>
             <li>
-                <a className="text-gray-600 dark:text-gray-400 hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+                <a className="text-gray-600 dark:text-gray-400 hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                 Cookies
               </a>
             </li>
@@ -199,15 +199,15 @@ export default function FooterShop() {
               © {year} Z-SHOP. Tous droits réservés. Made with ❤️ in Madagascar
             </p>
             <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-              <a className="hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+              <a className="hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                 Accessibilité
               </a>
               <span className="text-gray-300 dark:text-gray-600">•</span>
-              <a className="hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+              <a className="hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                 Plan du site
               </a>
               <span className="text-gray-300 dark:text-gray-600">•</span>
-              <a className="hover:text-[#FF6347] transition-colors cursor-not-allowed opacity-60" href="#">
+              <a className="hover:text-[#6366F1] transition-colors cursor-not-allowed opacity-60" href="#">
                 Sécurité
               </a>
             </div>
@@ -261,7 +261,7 @@ function Social({
     <a
       href={href}
       aria-label={icon}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#FF6347] hover:text-white transition-all hover:scale-110"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-[#6366F1] hover:text-white transition-all hover:scale-110"
     >
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
         {svg}

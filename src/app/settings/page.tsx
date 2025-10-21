@@ -104,7 +104,7 @@ export default function SettingsPage() {
                     onClick={() => setActiveTab(tab.id)}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${
                       activeTab === tab.id
-                        ? "bg-[#FF6347] text-white"
+                        ? "bg-[#6366F1] text-white"
                         : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 dark:bg-gray-900"
                     }`}
                   >
@@ -148,7 +148,7 @@ export default function SettingsPage() {
                               type="text"
                               value={formData.name}
                               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                              className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none"
+                              className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none"
                             />
                           </div>
                         </div>
@@ -163,7 +163,7 @@ export default function SettingsPage() {
                               type="email"
                               value={formData.email}
                               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                              className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none"
+                              className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none"
                             />
                           </div>
                         </div>
@@ -178,7 +178,7 @@ export default function SettingsPage() {
                               type="tel"
                               value={formData.phone}
                               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                              className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none"
+                              className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none"
                               placeholder="+261 34 00 000 00"
                             />
                           </div>
@@ -200,7 +200,7 @@ export default function SettingsPage() {
                               type="text"
                               value={formData.street}
                               onChange={(e) => setFormData({ ...formData, street: e.target.value })}
-                              className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none"
+                              className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none"
                               placeholder="123 Avenue de l'Indépendance"
                             />
                           </div>
@@ -215,7 +215,7 @@ export default function SettingsPage() {
                               type="text"
                               value={formData.city}
                               onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none"
+                              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none"
                               placeholder="Antananarivo"
                             />
                           </div>
@@ -228,7 +228,7 @@ export default function SettingsPage() {
                               type="text"
                               value={formData.postalCode}
                               onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })}
-                              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none"
+                              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none"
                               placeholder="101"
                             />
                           </div>
@@ -241,7 +241,7 @@ export default function SettingsPage() {
                           <select
                             value={formData.country}
                             onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                            className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none"
+                            className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none"
                           >
                             <option>Madagascar</option>
                             <option>France</option>
@@ -256,7 +256,7 @@ export default function SettingsPage() {
                     <div className="flex justify-end pt-4">
                       <button
                         onClick={handleSave}
-                        className="flex items-center gap-2 px-6 py-3 bg-[#FF6347] text-white rounded-lg font-semibold hover:bg-[#E55347] transition-colors"
+                        className="flex items-center gap-2 px-6 py-3 bg-[#6366F1] text-white rounded-lg font-semibold hover:bg-[#5B21B6] transition-colors"
                       >
                         <Save className="h-5 w-5" />
                         Enregistrer les modifications
@@ -283,7 +283,7 @@ export default function SettingsPage() {
                             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                             <input
                               type="password"
-                              className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none"
+                              className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none"
                               placeholder="••••••••"
                             />
                           </div>
@@ -297,7 +297,7 @@ export default function SettingsPage() {
                             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                             <input
                               type="password"
-                              className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none"
+                              className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none"
                               placeholder="••••••••"
                             />
                           </div>
@@ -311,7 +311,7 @@ export default function SettingsPage() {
                             <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                             <input
                               type="password"
-                              className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none"
+                              className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none"
                               placeholder="••••••••"
                             />
                           </div>
@@ -361,7 +361,7 @@ export default function SettingsPage() {
                         </div>
                         <label className="relative inline-flex items-center cursor-pointer">
                           <input type="checkbox" className="sr-only peer" defaultChecked />
-                          <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#FF6347]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#FF6347]"></div>
+                          <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#6366F1]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#6366F1]"></div>
                         </label>
                       </div>
                     ))}
@@ -377,7 +377,7 @@ export default function SettingsPage() {
                     {/* Language */}
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Langue</h3>
-                      <select className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none">
+                      <select className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none">
                         <option>Français</option>
                         <option>English</option>
                         <option>Malagasy</option>
@@ -387,7 +387,7 @@ export default function SettingsPage() {
                     {/* Currency */}
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Devise</h3>
-                      <select className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#FF6347] focus:ring-2 focus:ring-[#FF6347]/20 outline-none">
+                      <select className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 outline-none">
                         <option>Ariary (Ar)</option>
                         <option>Euro (€)</option>
                         <option>Dollar ($)</option>
@@ -402,7 +402,7 @@ export default function SettingsPage() {
                           onClick={() => setTheme("light")}
                           className={`p-4 rounded-lg text-left transition-all ${
                             theme === "light"
-                              ? "border-2 border-[#FF6347] bg-[#FF6347]/5"
+                              ? "border-2 border-[#6366F1] bg-[#6366F1]/5"
                               : "border border-gray-200 dark:border-gray-700 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
                           }`}
                         >
@@ -417,7 +417,7 @@ export default function SettingsPage() {
                           onClick={() => setTheme("dark")}
                           className={`p-4 rounded-lg text-left transition-all ${
                             theme === "dark"
-                              ? "border-2 border-[#FF6347] bg-[#FF6347]/5"
+                              ? "border-2 border-[#6366F1] bg-[#6366F1]/5"
                               : "border border-gray-200 dark:border-gray-700 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
                           }`}
                         >
@@ -432,7 +432,7 @@ export default function SettingsPage() {
                           onClick={() => setTheme("system")}
                           className={`p-4 rounded-lg text-left transition-all ${
                             theme === "system"
-                              ? "border-2 border-[#FF6347] bg-[#FF6347]/5"
+                              ? "border-2 border-[#6366F1] bg-[#6366F1]/5"
                               : "border border-gray-200 dark:border-gray-700 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
                           }`}
                         >

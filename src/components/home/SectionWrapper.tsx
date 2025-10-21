@@ -31,7 +31,7 @@ export default function SectionWrapper({
         {actionLink && (
           <a
             href={actionLink}
-            className="text-sm font-semibold text-[#FF6347] hover:text-[#E55347] transition-colors flex items-center gap-1 group"
+            className="text-sm font-semibold text-[#6366F1] hover:text-[#5B21B6] transition-colors flex items-center gap-1 group"
           >
             {actionText}
             <svg

@@ -64,7 +64,7 @@ export default function ProfilePage() {
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  <div className="h-full w-full bg-gradient-to-br from-[#FF6347] to-[#FF8C69] flex items-center justify-center text-white text-4xl font-bold">
+                  <div className="h-full w-full bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] flex items-center justify-center text-white text-4xl font-bold">
                     {user.name.charAt(0).toUpperCase()}
                   </div>
                 )}
@@ -76,16 +76,16 @@ export default function ProfilePage() {
 
             {/* Info */}
             <div className="flex-1 text-center md:text-left">
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white dark:text-white mb-2">{user.name}</h1>
-              <p className="text-gray-600 dark:text-gray-300 dark:text-gray-300 mb-4">Membre depuis {new Date(user.createdAt).toLocaleDateString("fr-FR", { month: "long", year: "numeric" })}</p>
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{user.name}</h1>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">Membre depuis {new Date(user.createdAt).toLocaleDateString("fr-FR", { month: "long", year: "numeric" })}</p>
               
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 dark:text-gray-300">
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
                   <Mail className="h-4 w-4" />
                   {user.email}
                 </div>
                 {user.phone && (
-                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 dark:text-gray-300">
+                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
                     <Phone className="h-4 w-4" />
                     {user.phone}
                   </div>
@@ -103,7 +103,7 @@ export default function ProfilePage() {
               </button>
               <button
                 onClick={() => router.push("/wallet")}
-                className="px-6 py-2.5 bg-[#FF6347] text-white rounded-lg font-medium hover:bg-[#E55347] transition-colors"
+                className="px-6 py-2.5 bg-[#6366F1] text-white rounded-lg font-medium hover:bg-[#5B21B6] transition-colors"
               >
                 Mon portefeuille
               </button>
@@ -131,7 +131,7 @@ export default function ProfilePage() {
         <div className="grid md:grid-cols-3 gap-6">
           {/* Personal Info */}
           <div className="md:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white dark:text-white mb-6">Informations personnelles</h2>
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Informations personnelles</h2>
             
             <div className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
@@ -237,14 +237,14 @@ export default function ProfilePage() {
             </div>
 
             {user.wallet && (
-              <div className="bg-gradient-to-br from-[#FF6347] to-[#FF8C69] rounded-xl shadow-lg p-6 text-white">
+              <div className="bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] rounded-xl shadow-lg p-6 text-white">
                 <h3 className="text-lg font-semibold mb-2">Solde du portefeuille</h3>
                 <div className="text-3xl font-bold mb-4">
                   {user.wallet.balance.toLocaleString("fr-FR")} {user.wallet.currency}
                 </div>
                 <button
                   onClick={() => router.push("/wallet")}
-                  className="w-full bg-white text-[#FF6347] py-2 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                  className="w-full bg-white text-[#6366F1] py-2 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                 >
                   Gérer mon portefeuille
                 </button>

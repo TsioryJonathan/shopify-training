@@ -52,7 +52,7 @@ export default function Slide({
           {/* Discount Badge */}
           {discount && (
             <div className="inline-block">
-              <span className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#FF6347] to-[#FF8C69] px-4 py-2 text-sm font-bold text-white shadow-lg animate-pulse">
+              <span className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] px-4 py-2 text-sm font-bold text-white shadow-lg animate-pulse">
                 🔥 {discount} DE RÉDUCTION
               </span>
             </div>
@@ -85,7 +85,7 @@ export default function Slide({
           {/* CTA Button */}
           <button
             onClick={handleClick}
-            className="group/btn inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-base font-semibold text-gray-900 shadow-xl transition-all hover:bg-[#FF6347] hover:text-white hover:scale-105 active:scale-95"
+            className="group/btn inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-base font-semibold text-gray-900 shadow-xl transition-all hover:bg-[#6366F1] hover:text-white hover:scale-105 active:scale-95"
           >
             {ctaText}
             <ArrowRight className="h-5 w-5 transition-transform group-hover/btn:translate-x-1" />
@@ -94,7 +94,7 @@ export default function Slide({
       </div>
 
       {/* Decorative elements */}
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-tl from-[#FF6347]/20 to-transparent blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-tl from-[#6366F1]/20 to-transparent blur-3xl" />
     </div>
   );
 }
