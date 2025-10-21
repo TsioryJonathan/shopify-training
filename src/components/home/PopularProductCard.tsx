@@ -119,7 +119,7 @@ export default function ProductCardShop({
       <div className="p-3">
         {/* Category */}
         {category && (
-          <p className="mb-1 text-xs text-gray-500 uppercase tracking-wide">
+          <p className="mb-1 text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">
             {category}
           </p>
         )}
@@ -127,7 +127,7 @@ export default function ProductCardShop({
         {/* Title */}
         <a
           href={href}
-          className="block mb-2 text-sm font-medium text-gray-900 line-clamp-2 hover:text-gray-600 transition-colors"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white line-clamp-2 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         >
           {title}
         </a>
@@ -148,16 +148,16 @@ export default function ProductCardShop({
               ))}
             </div>
             {reviewsCount && (
-              <span className="text-xs text-gray-500">({reviewsCount})</span>
+              <span className="text-xs text-gray-500 dark:text-gray-400">({reviewsCount})</span>
             )}
           </div>
         )}
 
         {/* Price */}
         <div className="flex items-center gap-2">
-          <span className="text-lg font-bold text-gray-900">{price}</span>
+          <span className="text-lg font-bold text-gray-900 dark:text-white">{price}</span>
           {oldPrice && (
-            <span className="text-sm text-gray-400 line-through">{oldPrice}</span>
+            <span className="text-sm text-gray-400 dark:text-gray-500 line-through">{oldPrice}</span>
           )}
         </div>
 
@@ -173,8 +173,8 @@ export default function ProductCardShop({
                   className={[
                     "relative h-6 w-6 overflow-hidden rounded border-2 transition-all",
                     selected
-                      ? "border-gray-900 scale-110"
-                      : "border-gray-200 hover:border-gray-400",
+                      ? "border-gray-900 dark:border-white scale-110"
+                      : "border-gray-200 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-400",
                   ].join(" ")}
               aria-pressed={selected}
               title={t.alt || title}
@@ -189,7 +189,7 @@ export default function ProductCardShop({
           );
         })}
         {gallery.length > 5 && (
-              <span className="text-xs text-gray-500">+{gallery.length - 5}</span>
+              <span className="text-xs text-gray-500 dark:text-gray-400">+{gallery.length - 5}</span>
             )}
           </div>
         )}
