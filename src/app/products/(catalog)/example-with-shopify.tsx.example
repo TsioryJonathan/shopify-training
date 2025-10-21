@@ -1,3 +1,6 @@
+// EXEMPLE : Comment utiliser les produits Shopify dans cette page
+// Renommez ce fichier en "page.tsx" pour l'activer
+
 "use client";
 
 import ProductGrid from "@/components/products/ProductGrid";
@@ -8,7 +11,7 @@ import { SlidersHorizontal, Loader2 } from "lucide-react";
 import { useProductFilters, FilterOptions } from "@/hooks/useProductFilters";
 import { useSearchParams } from "next/navigation";
 
-export default function Products() {
+export default function ProductsWithShopify() {
   const searchParams = useSearchParams();
   const categoryFromUrl = searchParams.get("category") || "";
   
@@ -18,7 +21,7 @@ export default function Products() {
     sortBy: "relevance",
   });
 
-  // 🛍️ Récupération des produits depuis Shopify
+  // 🎯 Utilisation du hook Shopify
   const { 
     products: shopifyProducts, 
     loading, 
@@ -26,6 +29,8 @@ export default function Products() {
     isShopifyConfigured 
   } = useShopifyProducts({
     first: 50,
+    sortKey: 'CREATED_AT',
+    reverse: true,
   });
 
   // Appliquer les filtres locaux sur les produits Shopify
@@ -88,12 +93,12 @@ export default function Products() {
       <div className="bg-white dark:bg-gray-900 min-h-screen transition-colors">
         {/* Header Section */}
         <div className="border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
-          {/* Shopify Status Indicator */}
+          {/* Mode indicator */}
           {!isShopifyConfigured && (
             <div className="mb-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
               <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                ⚠️ <strong>Mode développement :</strong> Shopify n'est pas configuré. 
-                Ajoutez vos credentials dans <code className="bg-yellow-100 dark:bg-yellow-900 px-1 rounded">.env.local</code> pour voir vos produits réels.
+                ⚠️ <strong>Mode développement :</strong> Utilisation des données mock. 
+                Configurez Shopify dans <code>.env.local</code> pour utiliser les vraies données.
               </p>
             </div>
           )}
@@ -108,12 +113,12 @@ export default function Products() {
                   {loading ? (
                     <span className="flex items-center gap-2">
                       <Loader2 className="h-4 w-4 animate-spin" />
-                      Chargement des produits...
+                      Chargement...
                     </span>
                   ) : (
                     <>
                       {filteredProducts.length} produit{filteredProducts.length > 1 ? "s" : ""} trouvé{filteredProducts.length > 1 ? "s" : ""}
-                      {isShopifyConfigured && <span className="text-green-600 dark:text-green-400 ml-2 font-medium">✓ Shopify</span>}
+                      {isShopifyConfigured && <span className="text-green-600 ml-2">✓ Shopify</span>}
                     </>
                   )}
                 </p>
@@ -131,9 +136,11 @@ export default function Products() {
 
             {/* Sort Dropdown */}
             <div className="flex items-center gap-3">
-              <label className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">Trier par:</label>
+              <label className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">
+                Trier par:
+              </label>
               <select 
-                className="flex-1 sm:flex-none rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2 text-sm focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-white disabled:opacity-50"
+                className="flex-1 sm:flex-none rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2 text-sm focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                 onChange={handleSortChange}
                 disabled={loading}
               >
@@ -152,7 +159,9 @@ export default function Products() {
               <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
                 Les filtres sont disponibles sur la version desktop. 
                 <br />
-                <span className="text-xs text-gray-500 dark:text-gray-500">Utilisez un écran plus large pour accéder aux filtres avancés.</span>
+                <span className="text-xs text-gray-500 dark:text-gray-500">
+                  Utilisez un écran plus large pour accéder aux filtres avancés.
+                </span>
               </p>
             </div>
           )}
@@ -160,7 +169,6 @@ export default function Products() {
 
         {/* Products Grid */}
         <div className="px-4 py-6 sm:px-6 lg:px-8">
-          {/* Error State */}
           {error && (
             <div className="mb-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
               <p className="text-sm text-red-800 dark:text-red-200">
@@ -169,25 +177,19 @@ export default function Products() {
             </div>
           )}
 
-          {/* Loading State */}
           {loading ? (
-            <div className="flex flex-col items-center justify-center py-20">
-              <Loader2 className="h-12 w-12 animate-spin text-gray-400 mb-4" />
-              <p className="text-gray-600 dark:text-gray-400">Chargement des produits...</p>
-              {isShopifyConfigured && (
-                <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">Récupération depuis Shopify</p>
-              )}
+            <div className="flex justify-center items-center py-12">
+              <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
             </div>
           ) : filteredProducts.length > 0 ? (
             <ProductGrid data={filteredProducts} />
           ) : (
             <div className="text-center py-12">
-              <p className="text-gray-500 dark:text-gray-400 text-lg">Aucun produit trouvé</p>
+              <p className="text-gray-500 dark:text-gray-400 text-lg">
+                Aucun produit trouvé
+              </p>
               <p className="text-gray-400 dark:text-gray-500 text-sm mt-2">
-                {isShopifyConfigured 
-                  ? "Essayez de modifier vos filtres ou vérifiez que vos produits sont publiés dans Shopify"
-                  : "Configurez Shopify dans .env.local pour voir vos produits"
-                }
+                Essayez de modifier vos filtres
               </p>
             </div>
           )}
@@ -196,3 +198,4 @@ export default function Products() {
     </div>
   );
 }
+

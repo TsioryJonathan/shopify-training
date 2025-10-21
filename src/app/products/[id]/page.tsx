@@ -1,18 +1,18 @@
 "use client";
 
-import { mockProducts } from "@/constants";
 import { useParams, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { Heart, ShoppingCart, Star, Truck, Shield, RefreshCw, ChevronLeft, Share2, Minus, Plus } from "lucide-react";
+import { Heart, ShoppingCart, Star, Truck, Shield, RefreshCw, ChevronLeft, Share2, Minus, Plus, Loader2 } from "lucide-react";
 import PopularProductCard from "@/components/home/PopularProductCard";
 import { useCartStore } from "@/stores/useCartStore";
 import { useWishlistStore } from "@/stores/useWishlistStore";
+import { useShopifyProduct, useShopifyProducts } from "@/hooks/useShopifyProducts";
+import { getUniqueVariantOptions } from "@/lib/shopify/utils";
 
 export default function AboutProduct() {
   const { id } = useParams();
   const router = useRouter();
-  const [product, setProduct] = useState<any>(null);
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("M");
@@ -23,37 +23,73 @@ export default function AboutProduct() {
     state.isInWishlist(id as string)
   );
 
-  useEffect(() => {
-    const foundProduct = mockProducts.find((p) => p.id === id);
-    setProduct(foundProduct);
-  }, [id]);
+  // 🛍️ Récupération du produit depuis Shopify
+  const { product, loading, error, isShopifyConfigured } = useShopifyProduct(id as string);
+  
+  // Récupération des produits similaires
+  const { products: allProducts } = useShopifyProducts({ first: 10 });
+  const relatedProducts = allProducts.filter(p => p.id !== product?.id).slice(0, 5);
 
-  if (!product) {
+  if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center pt-[136px]">
         <div className="text-center">
-          <p className="text-gray-600 dark:text-gray-300">Chargement...</p>
+          <Loader2 className="h-12 w-12 animate-spin text-gray-400 mx-auto mb-4" />
+          <p className="text-gray-600 dark:text-gray-300">Chargement du produit...</p>
+          {isShopifyConfigured && (
+            <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">Récupération depuis Shopify</p>
+          )}
         </div>
       </div>
     );
   }
 
-  // Mock images for gallery (in real app, this would come from product data)
-  const images = [product.image, product.image, product.image, product.image];
-  const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
-  const relatedProducts = mockProducts.filter(p => p.id !== product.id).slice(0, 5);
+  if (error || !product) {
+    return (
+      <div className="min-h-screen flex items-center justify-center pt-[136px]">
+        <div className="text-center">
+          <p className="text-red-600 dark:text-red-400 mb-4">
+            ❌ {error ? error.message : "Produit non trouvé"}
+          </p>
+          <button
+            onClick={() => router.push("/products")}
+            className="px-6 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+          >
+            Retour aux produits
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Utiliser les vraies images du produit Shopify
+  const images = product.images && product.images.length > 0 
+    ? product.images 
+    : [product.image];
+  
+  // Extraire les tailles disponibles depuis les variantes
+  const variantOptions = getUniqueVariantOptions(product);
+  const sizes = variantOptions.Size || variantOptions.Taille || ["XS", "S", "M", "L", "XL", "XXL"];
 
   return (
-    <div className="min-h-screen bg-white pb-20 lg:pb-0">
+    <div className="min-h-screen bg-white dark:bg-gray-900 pb-20 lg:pb-0  transition-colors">
       {/* Breadcrumb */}
-      <div className="border-b border-gray-100">
+      <div className="border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          {!isShopifyConfigured && (
+            <div className="mb-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
+              <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                ⚠️ Mode développement : Données mock. Configurez Shopify pour voir vos vrais produits.
+              </p>
+            </div>
+          )}
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:text-white transition-colors"
+            className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
           >
             <ChevronLeft className="h-4 w-4" />
             Retour aux produits
+            {isShopifyConfigured && <span className="text-green-600 dark:text-green-400 ml-2">✓ Shopify</span>}
           </button>
         </div>
       </div>
@@ -157,7 +193,7 @@ export default function AboutProduct() {
                       <Star
                         key={i}
                         className={`h-4 w-4 ${
-                          i < Math.floor(product.rating)
+                          i < Math.floor(product.rating || 0)
                             ? "fill-yellow-400 text-yellow-400"
                             : "fill-gray-200 text-gray-200"
                         }`}
@@ -172,6 +208,11 @@ export default function AboutProduct() {
               {product.category && (
                 <p className="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wide">
                   {product.category}
+                </p>
+              )}
+              {product.vendor && (
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  Marque: <span className="font-medium">{product.vendor}</span>
                 </p>
               )}
             </div>
@@ -247,7 +288,11 @@ export default function AboutProduct() {
                   </button>
                 </div>
                 <span className="text-sm text-gray-600 dark:text-gray-300">
-                  {mockProducts.length} en stock
+                  {product.availableForSale ? (
+                    <span className="text-green-600 dark:text-green-400 font-medium">✓ En stock</span>
+                  ) : (
+                    <span className="text-red-600 dark:text-red-400 font-medium">✗ Rupture de stock</span>
+                  )}
                 </span>
               </div>
             </div>
@@ -259,17 +304,19 @@ export default function AboutProduct() {
                   addToCart(product, quantity, selectedSize);
                   // Optionally show a toast notification here
                 }}
-                className="w-full flex items-center justify-center gap-3 bg-gray-900 text-white py-4 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors"
+                disabled={!product.availableForSale}
+                className="w-full flex items-center justify-center gap-3 bg-gray-900 text-white py-4 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <ShoppingCart className="h-5 w-5" />
-                Ajouter au panier
+                {product.availableForSale ? "Ajouter au panier" : "Rupture de stock"}
               </button>
               <button 
                 onClick={() => {
                   addToCart(product, quantity, selectedSize);
                   router.push("/cart");
                 }}
-                className="w-full flex items-center justify-center gap-3 border-2 border-gray-900 text-gray-900 dark:text-white py-4 px-6 rounded-lg font-semibold hover:bg-gray-50 dark:bg-gray-900 transition-colors"
+                disabled={!product.availableForSale}
+                className="w-full flex items-center justify-center gap-3 border-2 border-gray-900 text-gray-900 dark:text-white dark:border-gray-700 py-4 px-6 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Acheter maintenant
               </button>
@@ -327,16 +374,8 @@ export default function AboutProduct() {
                 Description
               </h2>
               <div className="prose prose-gray max-w-none">
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  {product.title} est un produit de haute qualité conçu pour répondre à vos besoins. 
-                  Fabriqué avec des matériaux premium, ce produit combine style et fonctionnalité 
-                  pour vous offrir la meilleure expérience possible. Son design moderne s'adapte 
-                  parfaitement à votre style de vie actif.
-                </p>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mt-4">
-                  Caractéristiques principales : durabilité exceptionnelle, confort optimal, 
-                  design élégant et finitions soignées. Parfait pour un usage quotidien ou 
-                  pour des occasions spéciales.
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
+                  {product.description || `${product.title} est un produit de haute qualité conçu pour répondre à vos besoins.`}
                 </p>
               </div>
             </div>
@@ -348,16 +387,28 @@ export default function AboutProduct() {
               </h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 {[
-                  { label: "Matériau", value: "Coton premium" },
-                  { label: "Couleur", value: "Noir" },
-                  { label: "Origine", value: "Madagascar" },
-                  { label: "Entretien", value: "Lavage machine 30°" },
+                  { label: "Marque", value: product.vendor || "Non spécifié" },
+                  { label: "Catégorie", value: product.category || "Général" },
+                  { label: "Disponibilité", value: product.availableForSale ? "En stock" : "Rupture" },
+                  { label: "Variantes", value: `${product.variants.length} option(s)` },
                 ].map((spec, idx) => (
-                  <div key={idx} className="flex justify-between py-3 border-b border-gray-100">
-                    <span className="text-sm text-gray-600 dark:text-gray-300">{spec.label}</span>
+                  <div key={idx} className="flex justify-between py-3 border-b border-gray-100 dark:border-gray-800">
+                    <span className="text-sm text-gray-600 dark:text-gray-400">{spec.label}</span>
                     <span className="text-sm font-medium text-gray-900 dark:text-white">{spec.value}</span>
                   </div>
                 ))}
+                {product.tags && product.tags.length > 0 && (
+                  <div className="col-span-full pt-4">
+                    <span className="text-sm text-gray-600 dark:text-gray-400 block mb-2">Tags :</span>
+                    <div className="flex flex-wrap gap-2">
+                      {product.tags.map((tag, idx) => (
+                        <span key={idx} className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-full">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -387,15 +438,15 @@ export default function AboutProduct() {
       </div>
 
       {/* Mobile Sticky Bottom Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 dark:border-gray-700 p-4 lg:hidden z-50 shadow-lg">
+      <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 p-4 lg:hidden z-50 shadow-lg">
         <div className="flex items-center gap-3">
           <div className="flex-1">
-            <div className="text-sm text-gray-600 dark:text-gray-300">Prix</div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">Prix</div>
             <div className="text-2xl font-bold text-gray-900 dark:text-white">{product.price}</div>
           </div>
           <button
             onClick={() => toggleWishlist(product)}
-            className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:bg-gray-900 transition-colors"
+            className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
           >
             <Heart
               className={`h-5 w-5 ${
@@ -407,10 +458,11 @@ export default function AboutProduct() {
             onClick={() => {
               addToCart(product, 1, selectedSize);
             }}
-            className="flex-1 flex items-center justify-center gap-2 bg-gray-900 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors"
+            disabled={!product.availableForSale}
+            className="flex-1 flex items-center justify-center gap-2 bg-gray-900 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <ShoppingCart className="h-5 w-5" />
-            Ajouter
+            {product.availableForSale ? "Ajouter" : "Indisponible"}
           </button>
         </div>
       </div>
