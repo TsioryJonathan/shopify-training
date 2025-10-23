@@ -185,18 +185,15 @@ body {
 /* Carousel styling */
 .swiper-button-prev,
 .swiper-button-next {
-  width: 44px !important;
-  height: 44px !important;
-  background: white !important;
+  width: 30px !important;
+  height: 30px !important;
   border-radius: 50% !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
   color: var(--shein-black) !important;
   transition: all 0.3s ease !important;
 }
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
-  background: var(--shein-coral) !important;
   color: white !important;
   transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(255, 99, 71, 0.3) !important;
@@ -250,4 +247,48 @@ body {
   50% {
     opacity: 0.8;
   }
+}
+
+/* Modern Homepage Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 7s ease-in-out infinite 1s;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite 2s;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-out forwards;
 }

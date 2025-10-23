@@ -5,6 +5,7 @@ import Navbar from "@/components/common/Navbar";
 import FooterShop from "@/components/common/Footer";
 import CategoryNavbar from "@/components/common/CategoryNavbar";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -41,6 +42,7 @@ export default function RootLayout({
         className={`${clashGrotesk.variable} antialiased overflow-x-hidden`}
       >
         <ThemeProvider>
+          <Toaster position="top-right" richColors />
           <Navbar />
           <div className="w-full h-full">{children}</div>
           <FooterShop />
