@@ -100,7 +100,7 @@ export default function AboutProduct() {
           {/* Image Gallery */}
           <div className="space-y-3">
             {/* Main Image */}
-            <div className="relative aspect-square bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden group">
+            <div className="relative w-full h-[400px] md:h-[500px] bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden group">
               <Image
                 src={images[selectedImage]}
                 alt={product.title}
