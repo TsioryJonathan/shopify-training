@@ -1,35 +1,37 @@
 import assets from "@/assets/images/assets";
 import CategoryNavbar from "@/components/common/CategoryNavbar";
-import HeroSection from "@/components/home/HeroSection";
-import CategoryShowcase from "@/components/home/CategoryShowcase";
-import ProductGrid from "@/components/home/ProductGrid";
-import StatsSection from "@/components/home/StatsSection";
-import CTASection from "@/components/home/CTASection";
-import TestimonialsSection from "@/components/home/TestimonialsSection";
-import NewsletterSection from "@/components/home/NewsletterSection";
-import BrandsSection from "@/components/home/BrandsSection";
+import HeroShopify from "@/components/home/HeroShopify";
+import TrustBadges from "@/components/home/TrustBadges";
+import ShopByCollection from "@/components/home/ShopByCollection";
+import MinimalProductCard from "@/components/home/MinimalProductCard";
+import BrandStory from "@/components/home/BrandStory";
+import SocialProof from "@/components/home/SocialProof";
+import NewsletterShopify from "@/components/home/NewsletterShopify";
 import { getProducts } from "@/services/shopify.service";
 import { shopifyConfig } from "@/lib/shopify/client";
 import Link from "next/link";
-import ArrowRightIcon from "@/components/home/ArrowRightIcon";
 
-const categories = [
-  { title: "Vêtements", image: assets.clothesCategory, count: 2500 },
-  { title: "Chaussures", image: assets.shoesCategory, count: 850 },
-  { title: "Accessoires", image: assets.accessoriesCategory, count: 1200 },
-  { title: "Électronique", image: assets.electronicsCategory, count: 680 },
-  { title: "Maison", image: assets.houseCategory, count: 950 },
-  { title: "Beauté", image: assets.beautyCategory, count: 420 },
+const collections = [
+  { 
+    name: "Nouvelle Collection", 
+    image: assets.clothesCategory,
+    description: "Découvrez nos dernières nouveautés",
+    link: "/products?collection=new"
+  },
+  { name: "Mode Femme", image: assets.beautyCategory, link: "/products?category=femme" },
+  { name: "Mode Homme", image: assets.electronicsCategory, link: "/products?category=homme" },
+  { name: "Accessoires", image: assets.accessoriesCategory, link: "/products?category=accessoires" },
+  { name: "Chaussures", image: assets.shoesCategory, link: "/products?category=chaussures" },
 ];
 
 export default async function Home() {
   // 🛍️ Récupération des produits depuis Shopify
   const allProducts = await getProducts({ first: 20 });
   const featuredProducts = allProducts.slice(0, 8);
-  const trendingProducts = allProducts.slice(8, 16);
+  const newArrivals = allProducts.slice(8, 16);
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-gray-50 dark:bg-gray-900 transition-colors">
+    <div className="min-h-screen w-full flex flex-col bg-white dark:bg-gray-900 transition-colors">
       {/* Category navbar - Fixed below main navbar */}
       <CategoryNavbar />
       
@@ -38,165 +40,145 @@ export default async function Home() {
         {/* Shopify Status Indicator */}
         {!shopifyConfig.isConfigured && (
           <div className="max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-8 mt-6">
-            <div className="p-4 bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 border border-yellow-200 dark:border-yellow-800 rounded-2xl backdrop-blur-sm">
+            <div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800">
               <div className="flex items-start gap-3">
-                <span className="text-2xl">⚠️</span>
-                <div>
-                  <p className="font-semibold text-yellow-900 dark:text-yellow-200 mb-1">
-                    Mode Développement Actif
-                  </p>
-                  <p className="text-sm text-yellow-800 dark:text-yellow-300">
-                    Shopify n'est pas configuré. Les produits affichés sont des exemples. 
-                    Configurez vos credentials dans <code className="bg-yellow-100 dark:bg-yellow-900 px-2 py-1 rounded text-xs">
-                      .env.local
-                    </code> pour voir vos vrais produits Shopify.
-                  </p>
+                <span className="text-xl">⚠️</span>
+                <div className="text-sm text-yellow-800 dark:text-yellow-300">
+                  <strong>Mode développement :</strong> Shopify n'est pas configuré. 
+                  Configurez vos credentials dans <code className="bg-yellow-100 dark:bg-yellow-900 px-1">.env.local</code>
                 </div>
-              </div>
+          </div>
             </div>
           </div>
         )}
-        
-        {/* Main content */}
-        <div className="max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-8 pb-16">
-          {/* Hero Section */}
-          <section className="mt-6 mb-16">
-            <HeroSection />
-          </section>
 
-          {/* Stats Section */}
-          <section className="mb-16">
-            <StatsSection />
-          </section>
+        {/* Hero Section - Full Width */}
+        <section className="mb-0">
+          <HeroShopify />
+        </section>
 
-          {/* Categories Section */}
-          <section className="mb-16">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-                Parcourir par Catégorie
+        {/* Trust Badges */}
+        <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <TrustBadges />
+        </section>
+
+        {/* Shop by Collection */}
+        <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+          <div className="mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+              Acheter par Collection
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              Découvrez nos collections soigneusement sélectionnées
+            </p>
+          </div>
+          <ShopByCollection collections={collections} />
+        </section>
+
+        {/* Featured Products */}
+        <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 bg-gray-50 dark:bg-gray-800/50">
+          <div className="flex items-end justify-between mb-8 md:mb-12">
+            <div>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                Nos Coups de Cœur
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 text-lg">
-                Trouvez exactement ce que vous cherchez parmi nos collections
+              <p className="text-gray-600 dark:text-gray-400">
+                {shopifyConfig.isConfigured 
+                  ? "Découvrez notre sélection premium" 
+                  : "Exemples de produits"}
               </p>
             </div>
-            <CategoryShowcase categories={categories} />
-          </section>
-
-          {/* Featured Products Section */}
-          <section className="mb-16">
-            <div className="flex items-end justify-between mb-8">
-              <div>
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] text-white px-4 py-2 rounded-full text-sm font-semibold mb-3">
-                  <span>✨</span>
-                  <span>Sélection Premium</span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
-                  Produits en Vedette
-                </h2>
-                <p className="text-gray-600 dark:text-gray-400 text-lg">
-                  {shopifyConfig.isConfigured 
-                    ? "Découvrez nos produits les plus populaires" 
-                    : "Exemples de produits disponibles"}
-                </p>
+            <Link
+              href="/products"
+              className="hidden md:inline-block text-sm font-semibold text-gray-900 dark:text-white border-b-2 border-gray-900 dark:border-white pb-1 hover:opacity-70 transition-opacity"
+            >
+              Voir tout
+            </Link>
               </div>
-              <Link
-                href="/products"
-                className="hidden md:inline-flex items-center gap-2 text-[#6366F1] dark:text-[#8B5CF6] font-semibold hover:gap-3 transition-all group"
-              >
-                <span>Voir tout</span>
-                <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
+
+          {featuredProducts.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+              {featuredProducts.map((product) => (
+                <MinimalProductCard key={product.id} {...product} />
+              ))}
+              </div>
+          ) : (
+            <div className="text-center py-20 bg-white dark:bg-gray-800">
+              <p className="text-gray-600 dark:text-gray-400">
+                Aucun produit disponible. Configurez Shopify.
+              </p>
             </div>
-
-            {featuredProducts.length > 0 ? (
-              <>
-                <ProductGrid products={featuredProducts} columns={4} />
-                <div className="mt-8 text-center md:hidden">
-                  <Link
-                    href="/products"
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl transition-all hover:scale-105"
-                  >
-                    <span>Voir tous les produits</span>
-                    <ArrowRightIcon className="w-5 h-5" />
-                  </Link>
-                </div>
-              </>
-            ) : (
-              <div className="text-center py-20 bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700">
-                <p className="text-gray-600 dark:text-gray-400 text-lg">
-                  Aucun produit disponible. Configurez Shopify ou ajoutez des produits à votre boutique.
-                </p>
-                <Link
-                  href="/products"
-                  className="inline-flex items-center gap-2 mt-6 text-[#6366F1] dark:text-[#8B5CF6] font-semibold hover:gap-3 transition-all"
-                >
-                  <span>Voir le catalogue</span>
-                  <ArrowRightIcon className="w-5 h-5" />
-                </Link>
-              </div>
-            )}
-          </section>
-
-          {/* CTA Section */}
-          <section className="mb-16">
-            <CTASection />
-          </section>
-
-          {/* Trending Products Section */}
-          {trendingProducts.length > 0 && (
-            <section className="mb-16">
-              <div className="flex items-end justify-between mb-8">
-                <div>
-                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-3">
-                    <span>🔥</span>
-                    <span>Hot Right Now</span>
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
-                    Tendances du Moment
-                  </h2>
-                  <p className="text-gray-600 dark:text-gray-400 text-lg">
-                    Les produits qui font le buzz en ce moment
-                  </p>
-                </div>
-                <Link
-                  href="/products?sort=trending"
-                  className="hidden md:inline-flex items-center gap-2 text-[#6366F1] dark:text-[#8B5CF6] font-semibold hover:gap-3 transition-all group"
-                >
-                  <span>Explorer tout</span>
-                  <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-              <ProductGrid products={trendingProducts} columns={4} />
-            </section>
           )}
 
-          {/* Testimonials Section */}
-          <section className="mb-16">
-            <div className="text-center mb-10">
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-3">
-                <span>⭐</span>
-                <span>Avis Clients</span>
+          <div className="text-center mt-8 md:hidden">
+            <Link
+              href="/products"
+              className="inline-block text-sm font-semibold text-gray-900 dark:text-white border-b-2 border-gray-900 dark:border-white pb-1"
+            >
+              Voir tous les produits
+            </Link>
+          </div>
+        </section>
+
+        {/* Brand Story */}
+        <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <BrandStory />
+        </section>
+
+        {/* New Arrivals */}
+        {newArrivals.length > 0 && (
+          <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            <div className="flex items-end justify-between mb-8 md:mb-12">
+              <div>
+                <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-600 dark:text-gray-400 block mb-2">
+                  Nouveautés
+                </span>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
+                  Nouvelles Arrivées
+                </h2>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-                Ce Que Disent Nos Clients
-              </h2>
-              <p className="text-gray-600 dark:text-gray-400 text-lg">
-                Plus de 50 000 clients satisfaits nous font confiance
-              </p>
-            </div>
-            <TestimonialsSection />
-          </section>
-
-          {/* Newsletter Section */}
-          <section className="mb-16">
-            <NewsletterSection />
-          </section>
-
-          {/* Brands Section */}
-          <section>
-            <BrandsSection />
-          </section>
+              <Link
+                href="/products?sort=new"
+                className="hidden md:inline-block text-sm font-semibold text-gray-900 dark:text-white border-b-2 border-gray-900 dark:border-white pb-1 hover:opacity-70 transition-opacity"
+              >
+                Tout voir
+              </Link>
         </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+              {newArrivals.map((product) => (
+                <MinimalProductCard key={product.id} {...product} />
+            ))}
+          </div>
+          </section>
+        )}
+
+        {/* Social Proof */}
+        <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <SocialProof />
+        </section>
+
+        {/* Newsletter */}
+        <section className="mb-0">
+          <NewsletterShopify />
+        </section>
+
+        {/* Final CTA Banner */}
+        <section className="relative h-[400px] bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+          <div className="absolute inset-0 flex items-center justify-center text-center px-4">
+            <div className="max-w-2xl">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+                Prêt à Découvrir Notre Collection ?
+              </h2>
+              <Link
+                href="/products"
+                className="inline-block bg-white text-gray-900 px-10 py-4 text-lg font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Explorer Maintenant
+              </Link>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
