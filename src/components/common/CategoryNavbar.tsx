@@ -42,7 +42,7 @@ export default function CategoryNavbar({
       className={[
         "w-full border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm transition-colors",
         "py-2",
-        "sticky top-[112px] left-0 z-30",
+        "fixed top-[72px] left-0 right-0 z-40",
         className,
       ].join(" ")}
     >
