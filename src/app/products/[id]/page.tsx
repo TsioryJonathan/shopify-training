@@ -141,14 +141,14 @@ export default function AboutProduct() {
             </div>
 
             {/* Thumbnails */}
-            <div className="hidden lg:grid grid-cols-5 gap-2">
+            <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
               {images.map((img, idx) => (
                 <button
                   key={idx}
                   onClick={() => setSelectedImage(idx)}
                   className={`relative aspect-square rounded-lg overflow-hidden border transition-all ${
                     selectedImage === idx
-                      ? "border-gray-900 ring-2 ring-gray-900"
+                      ? "border-gray-900 dark:border-white ring-2 ring-gray-900 dark:ring-white"
                       : "border-gray-200 dark:border-gray-700 hover:border-gray-400"
                   }`}
                 >
@@ -159,22 +159,6 @@ export default function AboutProduct() {
                     className="object-cover"
                   />
                 </button>
-              ))}
-            </div>
-
-            {/* Mobile Thumbnail Dots */}
-            <div className="flex lg:hidden justify-center gap-2">
-              {images.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setSelectedImage(idx)}
-                  className={`h-2 rounded-full transition-all ${
-                    selectedImage === idx
-                      ? "w-8 bg-gray-900"
-                      : "w-2 bg-gray-300"
-                  }`}
-                  aria-label={`Image ${idx + 1}`}
-                />
               ))}
             </div>
           </div>
