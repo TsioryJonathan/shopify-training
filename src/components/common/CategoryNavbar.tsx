@@ -59,7 +59,7 @@ export default function CategoryNavbar({
               className={[
                 "peer block w-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800",
                 "px-3 py-2 text-sm text-gray-900 dark:text-white",
-                "outline-none transition focus:border-[#6366F1] focus:ring-1 focus:ring-[#6366F1]",
+                "outline-none transition focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981]",
               ].join(" ")}
               defaultValue={categories[0]?.href ?? "/products"}
             >
@@ -83,7 +83,7 @@ export default function CategoryNavbar({
             className={[
               "cat-prev absolute left-0 top-1/2 z-10 -translate-y-1/2",
               "h-7 w-7 items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300",
-              "hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-[#6366F1] hover:text-[#6366F1] hidden md:flex transition-all shadow-sm",
+              "hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-[#10b981] hover:text-[#10b981] hidden md:flex transition-all shadow-sm",
             ].join(" ")}
           >
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
@@ -96,7 +96,7 @@ export default function CategoryNavbar({
             className={[
               "cat-next absolute right-0 top-1/2 z-10 -translate-y-1/2",
               "h-7 w-7 items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300",
-              "hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-[#6366F1] hover:text-[#6366F1] hidden md:flex transition-all shadow-sm",
+              "hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-[#10b981] hover:text-[#10b981] hidden md:flex transition-all shadow-sm",
             ].join(" ")}
           >
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
@@ -127,9 +127,9 @@ export default function CategoryNavbar({
                     className={[
                       "inline-flex items-center justify-center rounded-full",
                       "border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300",
-                      "hover:border-[#6366F1] hover:bg-[#6366F1] hover:text-white",
+                      "hover:border-[#10b981] hover:bg-[#10b981] hover:text-white",
                       "transition-all duration-200",
-                      c.label === "Tous" && "bg-[#6366F1] text-white border-[#6366F1]",
+                      c.label === "Tous" && "bg-[#10b981] text-white border-[#10b981]",
                     ].join(" ")}
                   >
                     {c.label}

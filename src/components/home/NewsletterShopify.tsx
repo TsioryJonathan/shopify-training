@@ -16,7 +16,7 @@ export default function NewsletterShopify() {
   };
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-800 py-10 md:py-12">
+    <div className="bg-gray-50 dark:bg-neutral-900 py-10 md:py-12">
       <div className="max-w-xl mx-auto text-center px-4">
         <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3">
           Newsletter
@@ -37,7 +37,7 @@ export default function NewsletterShopify() {
           />
           <button
             type="submit"
-            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-sm bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-sm bg-[#10b981] dark:bg-[#10b981] text-white font-semibold hover:bg-[#059669] dark:hover:bg-[#059669] transition-colors"
           >
             <span>OK</span>
           </button>

@@ -55,9 +55,9 @@ export default function HeroShopify() {
       <div className="absolute inset-0">
         <div 
           className={`w-full h-full bg-gradient-to-br ${
-            currentSlide === 0 ? 'from-gray-800 via-gray-700 to-gray-600' :
-            currentSlide === 1 ? 'from-slate-800 via-slate-700 to-slate-600' :
-            'from-neutral-800 via-neutral-700 to-neutral-600'
+            currentSlide === 0 ? 'from-emerald-700 via-emerald-600 to-green-600' :
+            currentSlide === 1 ? 'from-green-700 via-green-600 to-emerald-600' :
+            'from-teal-700 via-green-600 to-emerald-600'
           } transition-all duration-1000`}
         >
           {/* Pattern overlay */}

@@ -32,9 +32,9 @@ const ActionIcon = ({
     className="relative p-2 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-full transition-all duration-200 group"
     aria-label={label}
   >
-    <Icon className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:text-[#6366F1] transition-colors" />
+    <Icon className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:text-[#10b981] transition-colors" />
     {itemCount !== undefined && itemCount > 0 && (
-      <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#6366F1] text-[10px] font-semibold text-white">
+      <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#10b981] text-[10px] font-semibold text-white">
         {itemCount}
       </span>
     )}
@@ -101,8 +101,8 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm transition-colors">
-      {/* Top banner for promos (Shein-style) */}
-      <div className="bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] text-white text-center py-2 px-4">
+      {/* Top banner for promos */}
+      <div className="bg-gradient-to-r from-[#10b981] to-[#059669] text-white text-center py-2 px-4">
         <p className="text-xs sm:text-sm font-medium">
           🔥 VENTE FLASH: Jusqu'à -70% sur une sélection d'articles | Livraison GRATUITE dès 50 000 Ar
         </p>
@@ -119,19 +119,19 @@ const Navbar = () => {
 
               {/* Desktop navigation links */}
               <div className="hidden lg:flex items-center gap-6">
-                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#6366F1] transition-colors">
+                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
                   NOUVEAUTÉS
                 </Link>
-                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#6366F1] transition-colors">
+                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
                   FEMMES
                 </Link>
-                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#6366F1] transition-colors">
+                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
                   HOMMES
                 </Link>
-                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#6366F1] transition-colors">
+                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
                   ENFANTS
                 </Link>
-                <Link href="/products" className="text-sm font-bold text-[#6366F1] hover:text-[#5B21B6] transition-colors">
+                <Link href="/products" className="text-sm font-bold text-[#10b981] hover:text-[#059669] transition-colors">
                   VENTES 🔥
                 </Link>
               </div>

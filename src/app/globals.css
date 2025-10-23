@@ -46,10 +46,10 @@
 :root {
   --font-clash-grotesk: "ClashGrotesk", sans-serif;
 
-  /* Shein-inspired color palette */
-  --shein-coral: #6366F1;
-  --shein-coral-light: #8B5CF6;
-  --shein-coral-dark: #5B21B6;
+  /* Green theme color palette */
+  --primary-green: #10b981;
+  --primary-green-light: #34d399;
+  --primary-green-dark: #059669;
   --shein-black: #222222;
   --shein-gray: #666666;
   --shein-light-gray: #F7F7F7;

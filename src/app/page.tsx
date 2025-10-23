@@ -28,7 +28,7 @@ export default async function Home() {
   const featuredProducts = allProducts.slice(0, 8);
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-white dark:bg-gray-900 transition-colors">
+    <div className="min-h-screen w-full flex flex-col bg-white dark:bg-black transition-colors">
       {/* Category navbar - Fixed below main navbar */}
       <CategoryNavbar />
       
@@ -69,7 +69,7 @@ export default async function Home() {
         </section>
 
         {/* Featured Products */}
-        <section className="bg-gray-50 dark:bg-gray-800/50 py-12 md:py-16">
+        <section className="bg-gray-50 dark:bg-neutral-900 py-12 md:py-16">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-end justify-between mb-8">
               <div>
