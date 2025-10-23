@@ -16,37 +16,32 @@ export default function NewsletterShopify() {
   };
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-800 py-12 md:py-16">
-      <div className="max-w-2xl mx-auto text-center px-4">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          Restez Informé
+    <div className="bg-gray-50 dark:bg-gray-800 py-10 md:py-12">
+      <div className="max-w-xl mx-auto text-center px-4">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3">
+          Newsletter
         </h2>
         
-        <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8">
-          Inscrivez-vous pour recevoir nos nouveautés, offres exclusives et codes promo
+        <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mb-6">
+          Recevez nos nouveautés et offres exclusives
         </p>
 
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Votre adresse email"
+            placeholder="Votre email"
             required
-            className="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-white transition-all"
+            className="flex-1 px-4 py-2.5 text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-gray-900 dark:focus:ring-white"
           />
           <button
             type="submit"
-            className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 text-sm bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
           >
-            <span>S'inscrire</span>
-            <Send className="w-4 h-4" />
+            <span>OK</span>
           </button>
         </form>
-
-        <p className="text-xs text-gray-500 dark:text-gray-400 mt-4">
-          En vous inscrivant, vous acceptez de recevoir nos emails marketing
-        </p>
       </div>
     </div>
   );

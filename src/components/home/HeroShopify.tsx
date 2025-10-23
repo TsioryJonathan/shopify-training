@@ -50,7 +50,7 @@ export default function HeroShopify() {
   const slide = slides[currentSlide];
 
   return (
-    <div className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
+    <div className="relative w-full h-[350px] md:h-[450px] lg:h-[500px] overflow-hidden">
       {/* Background - Gradient placeholder (in real app would be image) */}
       <div className="absolute inset-0">
         <div 
@@ -77,19 +77,19 @@ export default function HeroShopify() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-2xl">
             {/* Title */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight animate-fadeIn">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 md:mb-4 leading-tight animate-fadeIn">
               {slide.title}
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 md:mb-10 leading-relaxed animate-fadeIn">
+            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 md:mb-8 leading-relaxed animate-fadeIn">
               {slide.subtitle}
             </p>
 
             {/* CTA */}
             <Link
               href={slide.ctaLink}
-              className="inline-flex items-center gap-2 bg-white text-gray-900 px-8 md:px-10 py-3 md:py-4 text-base md:text-lg font-semibold hover:bg-gray-100 transition-all hover:scale-105 hover:shadow-xl group animate-fadeIn"
+              className="inline-flex items-center gap-2 bg-white text-gray-900 px-6 md:px-8 py-2.5 md:py-3 text-sm md:text-base font-semibold hover:bg-gray-100 transition-all group animate-fadeIn"
             >
               <span>{slide.ctaText}</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
