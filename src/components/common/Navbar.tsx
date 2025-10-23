@@ -102,36 +102,36 @@ const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm transition-colors">
       {/* Top banner for promos */}
-      <div className="bg-gradient-to-r from-[#10b981] to-[#059669] text-white text-center py-2 px-4">
-        <p className="text-xs sm:text-sm font-medium">
-          🔥 VENTE FLASH: Jusqu'à -70% sur une sélection d'articles | Livraison GRATUITE dès 50 000 Ar
+      <div className="bg-gradient-to-r from-[#10b981] to-[#059669] text-white text-center py-1.5 px-4">
+        <p className="text-xs font-medium">
+          🔥 VENTE FLASH: -70% | Livraison GRATUITE dès 50 000 Ar
         </p>
       </div>
 
       <nav className="bg-white dark:bg-gray-900 transition-colors">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between gap-4">
+          <div className="flex h-14 items-center justify-between gap-4">
             {/* Left: Logo */}
             <div className="flex items-center gap-8">
               <Link href="/" aria-label="Page d'accueil de Z-SHOP" className="flex-shrink-0">
-                <Logo className="h-10 w-auto object-contain" />
+                <Logo className="h-8 w-auto object-contain" />
               </Link>
 
               {/* Desktop navigation links */}
-              <div className="hidden lg:flex items-center gap-6">
-                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
+              <div className="hidden lg:flex items-center gap-4">
+                <Link href="/products" className="text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
                   NOUVEAUTÉS
                 </Link>
-                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
+                <Link href="/products" className="text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
                   FEMMES
                 </Link>
-                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
+                <Link href="/products" className="text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
                   HOMMES
                 </Link>
-                <Link href="/products" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
+                <Link href="/products" className="text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
                   ENFANTS
                 </Link>
-                <Link href="/products" className="text-sm font-bold text-[#10b981] hover:text-[#059669] transition-colors">
+                <Link href="/products" className="text-xs font-bold text-[#10b981] hover:text-[#059669] transition-colors">
                   VENTES 🔥
                 </Link>
               </div>

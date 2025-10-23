@@ -41,8 +41,8 @@ export default function CategoryNavbar({
     <div
       className={[
         "w-full border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm transition-colors",
-        "py-2",
-        "fixed top-[100px] left-0 right-0 z-40",
+        "py-1.5",
+        "fixed top-[82px] left-0 right-0 z-40",
         className,
       ].join(" ")}
     >
@@ -58,7 +58,7 @@ export default function CategoryNavbar({
               onChange={handleSelect}
               className={[
                 "peer block w-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800",
-                "px-3 py-2 text-sm text-gray-900 dark:text-white",
+                "px-2 py-1.5 text-xs text-gray-900 dark:text-white",
                 "outline-none transition focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981]",
               ].join(" ")}
               defaultValue={categories[0]?.href ?? "/products"}
@@ -82,11 +82,11 @@ export default function CategoryNavbar({
             aria-label="Précédent"
             className={[
               "cat-prev absolute left-0 top-1/2 z-10 -translate-y-1/2",
-              "h-7 w-7 items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300",
+              "h-6 w-6 items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300",
               "hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-[#10b981] hover:text-[#10b981] hidden md:flex transition-all shadow-sm",
             ].join(" ")}
           >
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
               <path d="M15.5 19.1 8.4 12l7.1-7.1-1.4-1.4L5.6 12l8.5 8.5 1.4-1.4Z" />
             </svg>
           </button>
@@ -95,11 +95,11 @@ export default function CategoryNavbar({
             aria-label="Suivant"
             className={[
               "cat-next absolute right-0 top-1/2 z-10 -translate-y-1/2",
-              "h-7 w-7 items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300",
+              "h-6 w-6 items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300",
               "hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-[#10b981] hover:text-[#10b981] hidden md:flex transition-all shadow-sm",
             ].join(" ")}
           >
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
               <path d="m8.5 4.9 7.1 7.1-7.1 7.1 1.4 1.4 8.5-8.5L9.9 3.5 8.5 4.9Z" />
             </svg>
           </button>
@@ -126,7 +126,7 @@ export default function CategoryNavbar({
                     href={c.href}
                     className={[
                       "inline-flex items-center justify-center rounded-full",
-                      "border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-1.5 text-xs font-medium text-gray-700 dark:text-gray-300",
+                      "border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-1 text-xs font-medium text-gray-700 dark:text-gray-300",
                       "hover:border-[#10b981] hover:bg-[#10b981] hover:text-white",
                       "transition-all duration-200",
                       c.label === "Tous" && "bg-[#10b981] text-white border-[#10b981]",

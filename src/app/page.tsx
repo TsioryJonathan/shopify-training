@@ -33,7 +33,7 @@ export default async function Home() {
       <CategoryNavbar />
       
       {/* Main content with padding for fixed navbars */}
-      <div className="pt-[152px]">
+      <div className="pt-[122px]">
         {/* Shopify Status Indicator */}
         {!shopifyConfig.isConfigured && (
           <div className="max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-8 mb-4">
