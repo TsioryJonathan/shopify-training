@@ -96,11 +96,11 @@ export default function AboutProduct() {
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Product Main Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-12">
           {/* Image Gallery */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             {/* Main Image */}
-            <div className="relative aspect-[3/4] bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden group">
+            <div className="relative aspect-square bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden group">
               <Image
                 src={images[selectedImage]}
                 alt={product.title}
@@ -111,44 +111,44 @@ export default function AboutProduct() {
               {/* Wishlist Button */}
               <button
                 onClick={() => toggleWishlist(product)}
-                className="absolute top-4 right-4 p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-sm hover:bg-white hover:scale-105 transition-all z-10"
+                className="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-sm hover:bg-white hover:scale-105 transition-all z-10"
               >
                 <Heart
-                  className={`h-5 w-5 ${
+                  className={`h-4 w-4 ${
                     isInWishlist ? "fill-rose-500 text-rose-500" : "text-gray-600 dark:text-gray-300"
                   }`}
                 />
               </button>
 
               {/* Image Counter */}
-              <div className="absolute bottom-4 right-4 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full text-white text-sm font-medium">
+              <div className="absolute bottom-3 right-3 px-2.5 py-1 bg-black/60 backdrop-blur-sm rounded-full text-white text-xs font-medium">
                 {selectedImage + 1} / {images.length}
               </div>
 
               {/* Navigation Arrows for Mobile */}
               <button
                 onClick={() => setSelectedImage((prev) => (prev > 0 ? prev - 1 : images.length - 1))}
-                className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-sm hover:bg-white transition-all lg:hidden"
+                className="absolute left-3 top-1/2 -translate-y-1/2 p-1.5 bg-white/90 backdrop-blur-sm rounded-full shadow-sm hover:bg-white transition-all lg:hidden"
               >
-                <ChevronLeft className="h-5 w-5 text-gray-900 dark:text-white" />
+                <ChevronLeft className="h-4 w-4 text-gray-900 dark:text-white" />
               </button>
               <button
                 onClick={() => setSelectedImage((prev) => (prev < images.length - 1 ? prev + 1 : 0))}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-sm hover:bg-white transition-all lg:hidden rotate-180"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 bg-white/90 backdrop-blur-sm rounded-full shadow-sm hover:bg-white transition-all lg:hidden rotate-180"
               >
-                <ChevronLeft className="h-5 w-5 text-gray-900 dark:text-white" />
+                <ChevronLeft className="h-4 w-4 text-gray-900 dark:text-white" />
               </button>
             </div>
 
             {/* Thumbnails */}
-            <div className="hidden lg:grid grid-cols-4 gap-3">
+            <div className="hidden lg:grid grid-cols-5 gap-2">
               {images.map((img, idx) => (
                 <button
                   key={idx}
                   onClick={() => setSelectedImage(idx)}
-                  className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
+                  className={`relative aspect-square rounded-lg overflow-hidden border transition-all ${
                     selectedImage === idx
-                      ? "border-gray-900"
+                      ? "border-gray-900 ring-2 ring-gray-900"
                       : "border-gray-200 dark:border-gray-700 hover:border-gray-400"
                   }`}
                 >
@@ -180,10 +180,10 @@ export default function AboutProduct() {
           </div>
 
           {/* Product Info */}
-          <div className="space-y-6">
+          <div className="space-y-5">
             {/* Title & Rating */}
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
                 {product.title}
               </h1>
               {product.rating && (
@@ -192,7 +192,7 @@ export default function AboutProduct() {
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`h-4 w-4 ${
+                        className={`h-3.5 w-3.5 ${
                           i < Math.floor(product.rating || 0)
                             ? "fill-yellow-400 text-yellow-400"
                             : "fill-gray-200 text-gray-200"
@@ -200,7 +200,7 @@ export default function AboutProduct() {
                       />
                     ))}
                   </div>
-                  <span className="text-sm text-gray-600 dark:text-gray-300">
+                  <span className="text-xs text-gray-600 dark:text-gray-300">
                     {product.rating} ({product.reviewsCount} avis)
                   </span>
                 </div>
@@ -218,34 +218,34 @@ export default function AboutProduct() {
             </div>
 
             {/* Price */}
-            <div className="border-y border-gray-100 py-6">
-              <div className="flex items-baseline gap-3">
-                <span className="text-4xl font-bold text-gray-900 dark:text-white">
+            <div className="border-y border-gray-100 py-4">
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl font-bold text-gray-900 dark:text-white">
                   {product.price}
                 </span>
                 {product.oldPrice && (
-                  <span className="text-xl text-gray-400 line-through">
+                  <span className="text-lg text-gray-400 line-through">
                     {product.oldPrice}
                   </span>
                 )}
                 {product.oldPrice && (
-                  <span className="px-2 py-1 bg-gray-900 text-white text-sm font-bold rounded">
+                  <span className="px-2 py-0.5 bg-gray-900 text-white text-xs font-bold rounded">
                     -20%
                   </span>
                 )}
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
+              <p className="text-xs text-gray-600 dark:text-gray-300 mt-1.5">
                 Taxes incluses. Livraison calculée au paiement.
               </p>
             </div>
 
             {/* Size Selection */}
             <div>
-              <div className="flex items-center justify-between mb-3">
-                <label className="text-sm font-medium text-gray-900 dark:text-white">
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-xs font-medium text-gray-900 dark:text-white">
                   Taille: <span className="font-bold">{selectedSize}</span>
                 </label>
-                <button className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:text-white underline">
+                <button className="text-xs text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:text-white underline">
                   Guide des tailles
                 </button>
               </div>
@@ -254,7 +254,7 @@ export default function AboutProduct() {
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`py-3 text-sm font-medium rounded-lg border-2 transition-all ${
+                    className={`py-2 text-sm font-medium rounded-lg border transition-all ${
                       selectedSize === size
                         ? "border-gray-900 bg-gray-900 text-white"
                         : "border-gray-200 dark:border-gray-700 hover:border-gray-400"
@@ -268,26 +268,26 @@ export default function AboutProduct() {
 
             {/* Quantity */}
             <div>
-              <label className="block text-sm font-medium text-gray-900 dark:text-white mb-3">
+              <label className="block text-xs font-medium text-gray-900 dark:text-white mb-2">
                 Quantité
               </label>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 <div className="flex items-center border border-gray-200 dark:border-gray-700 rounded-lg">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="p-3 hover:bg-gray-50 dark:bg-gray-900 transition-colors"
+                    className="p-2 hover:bg-gray-50 dark:bg-gray-900 transition-colors"
                   >
-                    <Minus className="h-4 w-4" />
+                    <Minus className="h-3.5 w-3.5" />
                   </button>
-                  <span className="px-6 font-medium">{quantity}</span>
+                  <span className="px-5 font-medium text-sm">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="p-3 hover:bg-gray-50 dark:bg-gray-900 transition-colors"
+                    className="p-2 hover:bg-gray-50 dark:bg-gray-900 transition-colors"
                   >
-                    <Plus className="h-4 w-4" />
+                    <Plus className="h-3.5 w-3.5" />
                   </button>
                 </div>
-                <span className="text-sm text-gray-600 dark:text-gray-300">
+                <span className="text-xs text-gray-600 dark:text-gray-300">
                   {product.availableForSale ? (
                     <span className="text-green-600 dark:text-green-400 font-medium">✓ En stock</span>
                   ) : (
@@ -298,16 +298,16 @@ export default function AboutProduct() {
             </div>
 
             {/* Action Buttons */}
-            <div className="space-y-3 pt-4">
+            <div className="space-y-2 pt-3">
               <button 
                 onClick={() => {
                   addToCart(product, quantity, selectedSize);
                   // Optionally show a toast notification here
                 }}
                 disabled={!product.availableForSale}
-                className="w-full flex items-center justify-center gap-3 bg-gray-900 text-white py-4 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 bg-gray-900 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
               >
-                <ShoppingCart className="h-5 w-5" />
+                <ShoppingCart className="h-4 w-4" />
                 {product.availableForSale ? "Ajouter au panier" : "Rupture de stock"}
               </button>
               <button 
@@ -316,47 +316,47 @@ export default function AboutProduct() {
                   router.push("/cart");
                 }}
                 disabled={!product.availableForSale}
-                className="w-full flex items-center justify-center gap-3 border-2 border-gray-900 text-gray-900 dark:text-white dark:border-gray-700 py-4 px-6 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 border-2 border-gray-900 text-gray-900 dark:text-white dark:border-gray-700 py-3 px-6 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
               >
                 Acheter maintenant
               </button>
-              <button className="w-full flex items-center justify-center gap-3 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 py-3 px-6 rounded-lg hover:bg-gray-50 dark:bg-gray-900 transition-colors">
-                <Share2 className="h-4 w-4" />
+              <button className="w-full flex items-center justify-center gap-2 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 py-2.5 px-6 rounded-lg hover:bg-gray-50 dark:bg-gray-900 transition-colors text-sm">
+                <Share2 className="h-3.5 w-3.5" />
                 Partager
               </button>
             </div>
 
             {/* Features */}
-            <div className="border-t border-gray-100 pt-6 space-y-4">
-              <div className="flex items-start gap-3">
-                <Truck className="h-5 w-5 text-gray-400 flex-shrink-0 mt-0.5" />
+            <div className="border-t border-gray-100 pt-4 space-y-3">
+              <div className="flex items-start gap-2.5">
+                <Truck className="h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-gray-900 dark:text-white">
+                  <p className="text-xs font-medium text-gray-900 dark:text-white">
                     Livraison gratuite
                   </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                  <p className="text-xs text-gray-600 dark:text-gray-300">
                     Pour les commandes de plus de 50 000 Ar
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <RefreshCw className="h-5 w-5 text-gray-400 flex-shrink-0 mt-0.5" />
+              <div className="flex items-start gap-2.5">
+                <RefreshCw className="h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-gray-900 dark:text-white">
+                  <p className="text-xs font-medium text-gray-900 dark:text-white">
                     Retours gratuits
                   </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                  <p className="text-xs text-gray-600 dark:text-gray-300">
                     Sous 30 jours, sans condition
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <Shield className="h-5 w-5 text-gray-400 flex-shrink-0 mt-0.5" />
+              <div className="flex items-start gap-2.5">
+                <Shield className="h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-gray-900 dark:text-white">
+                  <p className="text-xs font-medium text-gray-900 dark:text-white">
                     Paiement sécurisé
                   </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                  <p className="text-xs text-gray-600 dark:text-gray-300">
                     Vos données sont protégées
                   </p>
                 </div>
