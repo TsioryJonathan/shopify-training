@@ -32,7 +32,7 @@ export default function AboutProduct() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center pt-[136px]">
+      <div className="min-h-screen flex items-center justify-center pt-[90px]">
         <div className="text-center">
           <Loader2 className="h-12 w-12 animate-spin text-gray-400 mx-auto mb-4" />
           <p className="text-gray-600 dark:text-gray-300">Chargement du produit...</p>
@@ -46,7 +46,7 @@ export default function AboutProduct() {
 
   if (error || !product) {
     return (
-      <div className="min-h-screen flex items-center justify-center pt-[136px]">
+      <div className="min-h-screen flex items-center justify-center pt-[90px]">
         <div className="text-center">
           <p className="text-red-600 dark:text-red-400 mb-4">
             ❌ {error ? error.message : "Produit non trouvé"}

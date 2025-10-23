@@ -51,7 +51,7 @@ export default function SearchContent() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 pt-[136px] transition-colors">
+    <div className="min-h-screen bg-white dark:bg-gray-900 pt-[90px] transition-colors">
       {/* Header Section */}
       <div className="border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
         <div className="max-w-[1400px] mx-auto">

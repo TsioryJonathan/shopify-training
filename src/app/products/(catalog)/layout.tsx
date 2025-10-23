@@ -7,7 +7,7 @@ export default function ProductsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="pt-[136px] bg-gray-50">
+    <div className="pt-[90px] bg-gray-50">
       {/* Container with max width */}
       <div className="mx-auto">
         {/* Grid: sidebar + content */}

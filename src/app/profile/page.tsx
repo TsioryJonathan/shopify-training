@@ -47,7 +47,7 @@ export default function ProfilePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-[136px] transition-colors">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-[90px] transition-colors">
       <div className="max-w-[1400px] mx-auto px-4 py-8">
         {/* Header */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-8 mb-6 transition-colors">

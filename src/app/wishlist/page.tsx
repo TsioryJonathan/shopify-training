@@ -19,7 +19,7 @@ export default function WishlistPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-white dark:bg-gray-900 pt-[136px] transition-colors">
+      <div className="min-h-screen bg-white dark:bg-gray-900 pt-[90px] transition-colors">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center py-16">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 dark:bg-gray-800 mb-6">
@@ -44,7 +44,7 @@ export default function WishlistPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 pt-[136px] transition-colors">
+    <div className="min-h-screen bg-white dark:bg-gray-900 pt-[90px] transition-colors">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">

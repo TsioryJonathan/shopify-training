@@ -5,5 +5,5 @@ export default function ProductIdLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="pt-[136px] bg-white">{children}</div>;
+  return <div className="pt-[90px] bg-white">{children}</div>;
 }

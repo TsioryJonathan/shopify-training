@@ -46,7 +46,7 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 pt-[112px] transition-colors">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 pt-[90px] transition-colors">
       <div className="max-w-[1400px] mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           {/* Left side - Branding */}
