@@ -57,34 +57,35 @@ export default async function Home() {
 
         {/* Shop by Collection */}
         <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-          <div className="mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <div className="mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
               Acheter par Collection
             </h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Découvrez nos collections
+            <p className="text-base text-gray-600 dark:text-gray-400">
+              Découvrez nos collections exclusives
             </p>
           </div>
           <ShopByCollection collections={collections} />
         </section>
 
         {/* Featured Products */}
-        <section className="bg-gray-50 dark:bg-neutral-900 py-12 md:py-16">
+        <section className="bg-gradient-to-b from-white via-gray-50 to-white dark:from-black dark:via-neutral-900 dark:to-black py-12 md:py-16">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-end justify-between mb-8">
+            <div className="flex items-end justify-between mb-10">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
                   Produits Populaires
                 </h2>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-base text-gray-600 dark:text-gray-400">
                   Notre sélection du moment
                 </p>
               </div>
               <Link
                 href="/products"
-                className="hidden md:inline-block text-sm font-semibold text-gray-900 dark:text-white border-b-2 border-gray-900 dark:border-white pb-1 hover:opacity-70 transition-opacity"
+                className="hidden md:inline-flex items-center gap-2 text-sm font-bold text-gray-900 dark:text-white border-b-2 border-gray-900 dark:border-white pb-1 hover:gap-3 transition-all group"
               >
-                Voir tout
+                <span>Voir tout</span>
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Link>
             </div>
 
@@ -95,19 +96,20 @@ export default async function Home() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16 bg-white dark:bg-gray-800">
+              <div className="text-center py-16 bg-white dark:bg-gray-800 rounded-xl">
                 <p className="text-gray-600 dark:text-gray-400">
                   Aucun produit disponible
                 </p>
               </div>
             )}
 
-            <div className="text-center mt-8 md:hidden">
+            <div className="text-center mt-10 md:hidden">
               <Link
                 href="/products"
-                className="inline-block text-sm font-semibold text-gray-900 dark:text-white border-b-2 border-gray-900 dark:border-white pb-1"
+                className="inline-flex items-center gap-2 text-sm font-bold text-gray-900 dark:text-white border-b-2 border-gray-900 dark:border-white pb-1 hover:gap-3 transition-all group"
               >
-                Voir tous les produits
+                <span>Voir tous les produits</span>
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Link>
             </div>
           </div>

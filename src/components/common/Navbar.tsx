@@ -15,7 +15,7 @@ import { useWishlistStore } from "@/stores/useWishlistStore";
 import { useAuthStore } from "@/stores/useAuthStore";
 import Logo from "./Logo";
 
-// Shein-style action icon component
+// Enhanced action icon component
 const ActionIcon = ({
   icon: Icon,
   onClick,
@@ -29,12 +29,12 @@ const ActionIcon = ({
 }) => (
   <button
     onClick={onClick}
-    className="relative p-2 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-full transition-all duration-200 group"
+    className="relative p-2.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300 group hover:scale-110"
     aria-label={label}
   >
-    <Icon className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:text-[#10b981] transition-colors" />
+    <Icon className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:text-[#10b981] transition-all duration-300" />
     {itemCount !== undefined && itemCount > 0 && (
-      <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#10b981] text-[10px] font-semibold text-white">
+      <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-r from-[#10b981] to-[#059669] text-[10px] font-bold text-white shadow-lg animate-pulse">
         {itemCount}
       </span>
     )}
@@ -100,17 +100,17 @@ const Navbar = () => {
   }, [isUserMenuOpen]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm transition-colors">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm transition-all">
       {/* Top banner for promos */}
-      <div className="bg-gradient-to-r from-[#10b981] to-[#059669] text-white text-center py-1.5 px-4">
-        <p className="text-xs font-medium">
+      <div className="bg-gradient-to-r from-[#10b981] via-[#059669] to-[#10b981] text-white text-center py-2 px-4 animate-pulse">
+        <p className="text-xs font-bold tracking-wide">
           🔥 VENTE FLASH: -70% | Livraison GRATUITE dès 50 000 Ar
         </p>
       </div>
 
-      <nav className="bg-white dark:bg-gray-900 transition-colors">
+      <nav className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md transition-all">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-14 items-center justify-between gap-4">
+          <div className="flex h-16 items-center justify-between gap-4">
             {/* Left: Logo */}
             <div className="flex items-center gap-8">
               <Link href="/" aria-label="Page d'accueil de Z-SHOP" className="flex-shrink-0">
@@ -118,21 +118,26 @@ const Navbar = () => {
               </Link>
 
               {/* Desktop navigation links */}
-              <div className="hidden lg:flex items-center gap-4">
-                <Link href="/products" className="text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
+              <div className="hidden lg:flex items-center gap-6">
+                <Link href="/products" className="text-xs font-semibold text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-all relative group">
                   NOUVEAUTÉS
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#10b981] group-hover:w-full transition-all duration-300" />
                 </Link>
-                <Link href="/products" className="text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
+                <Link href="/products" className="text-xs font-semibold text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-all relative group">
                   FEMMES
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#10b981] group-hover:w-full transition-all duration-300" />
                 </Link>
-                <Link href="/products" className="text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
+                <Link href="/products" className="text-xs font-semibold text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-all relative group">
                   HOMMES
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#10b981] group-hover:w-full transition-all duration-300" />
                 </Link>
-                <Link href="/products" className="text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-colors">
+                <Link href="/products" className="text-xs font-semibold text-gray-700 dark:text-gray-300 hover:text-[#10b981] transition-all relative group">
                   ENFANTS
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#10b981] group-hover:w-full transition-all duration-300" />
                 </Link>
-                <Link href="/products" className="text-xs font-bold text-[#10b981] hover:text-[#059669] transition-colors">
+                <Link href="/products" className="text-xs font-bold text-[#10b981] hover:text-[#059669] transition-all relative group">
                   VENTES 🔥
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#10b981]" />
                 </Link>
               </div>
             </div>
