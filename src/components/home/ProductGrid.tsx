@@ -1,6 +1,6 @@
 "use client";
 
-import { ShopifyProduct } from "@/lib/shopify/types";
+import { LocalProduct } from "@/lib/shopify/types";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, ShoppingCart, Eye, Star } from "lucide-react";
@@ -10,7 +10,7 @@ import { useWishlistStore } from "@/stores/useWishlistStore";
 import { toast } from "sonner";
 
 interface ProductGridProps {
-  products: ShopifyProduct[];
+  products: LocalProduct[];
   columns?: 3 | 4 | 5;
 }
 
@@ -24,20 +24,21 @@ export default function ProductGrid({ products, columns = 4 }: ProductGridProps)
     5: "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
   };
 
-  const handleAddToCart = (product: ShopifyProduct, e: React.MouseEvent) => {
+  const handleAddToCart = (product: LocalProduct, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     addToCart({
       id: product.id,
-      name: product.title,
+      title: product.title,
       price: product.price,
-      image: product.images[0] || "",
-      quantity: 1
-    });
+      image: product.images && product.images[0] ? product.images[0] : product.image,
+      href: product.href,
+      category: product.category,
+    }, 1);
     toast.success("Produit ajouté au panier");
   };
 
-  const handleAddToWishlist = (product: ShopifyProduct, e: React.MouseEvent) => {
+  const handleAddToWishlist = (product: LocalProduct, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     const isInWishlist = wishlistItems.some(item => item.id === product.id);
@@ -47,20 +48,31 @@ export default function ProductGrid({ products, columns = 4 }: ProductGridProps)
     } else {
       addToWishlist({
         id: product.id,
-        name: product.title,
+        title: product.title,
         price: product.price,
-        image: product.images[0] || "",
+        image: product.images && product.images[0] ? product.images[0] : product.image,
+        href: product.href,
+        category: product.category,
       });
       toast.success("Ajouté aux favoris");
     }
+  };
+
+  // Helper function to parse price string to number
+  const parsePrice = (priceStr: string): number => {
+    return parseFloat(priceStr.replace(/\s/g, "").replace("Ar", "").replace(/,/g, ""));
   };
 
   return (
     <div className={`grid ${gridCols[columns]} gap-6`}>
       {products.map((product) => {
         const isInWishlist = wishlistItems.some(item => item.id === product.id);
-        const discount = product.compareAtPrice 
-          ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)
+        
+        // Calculate discount percentage
+        const currentPrice = parsePrice(product.price);
+        const oldPrice = product.oldPrice ? parsePrice(product.oldPrice) : null;
+        const discount = oldPrice && oldPrice > currentPrice
+          ? Math.round(((oldPrice - currentPrice) / oldPrice) * 100)
           : 0;
 
         return (
@@ -72,14 +84,14 @@ export default function ProductGrid({ products, columns = 4 }: ProductGridProps)
             <div className="relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-[#6366F1] dark:hover:border-[#8B5CF6] transition-all hover:shadow-2xl">
               {/* Image Container */}
               <div className="relative aspect-square overflow-hidden bg-gray-100 dark:bg-gray-700">
-                {product.images[0] && (
+                {(product.images && product.images[0]) || product.image ? (
                   <Image
-                    src={product.images[0]}
+                    src={(product.images && product.images[0]) || product.image}
                     alt={product.title}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                )}
+                ) : null}
 
                 {/* Badges */}
                 <div className="absolute top-3 left-3 flex flex-col gap-2 z-10">
@@ -160,7 +172,7 @@ export default function ProductGrid({ products, columns = 4 }: ProductGridProps)
                       ))}
                     </div>
                     <span className="text-xs text-gray-500 dark:text-gray-400">
-                      ({product.reviewCount || 0})
+                      ({product.reviewsCount || 0})
                     </span>
                   </div>
                 )}
@@ -168,11 +180,11 @@ export default function ProductGrid({ products, columns = 4 }: ProductGridProps)
                 {/* Price */}
                 <div className="flex items-center gap-2 pt-1">
                   <span className="text-xl font-bold text-gray-900 dark:text-white">
-                    {product.price.toLocaleString()} Ar
+                    {product.price}
                   </span>
-                  {product.compareAtPrice && product.compareAtPrice > product.price && (
+                  {oldPrice && oldPrice > currentPrice && (
                     <span className="text-sm text-gray-500 dark:text-gray-400 line-through">
-                      {product.compareAtPrice.toLocaleString()} Ar
+                      {product.oldPrice}
                     </span>
                   )}
                 </div>
