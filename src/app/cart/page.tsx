@@ -20,21 +20,21 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-white dark:bg-gray-900 pt-[90px] transition-colors">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-[90px] transition-colors">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center py-16">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 dark:bg-gray-800 mb-6">
-              <ShoppingBag className="h-10 w-10 text-gray-400 dark:text-gray-500" />
+          <div className="text-center py-20">
+            <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 mb-8 shadow-lg animate-pulse">
+              <ShoppingBag className="h-12 w-12 text-gray-400 dark:text-gray-500" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
               Votre panier est vide
             </h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-8">
-              Découvrez nos produits et ajoutez-les à votre panier
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-10 max-w-md mx-auto">
+              Découvrez nos produits et ajoutez-les à votre panier pour commencer vos achats
             </p>
             <button
               onClick={() => router.push("/products")}
-              className="inline-flex items-center gap-2 bg-gray-900 dark:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-gray-900 to-gray-800 dark:from-gray-700 dark:to-gray-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-gray-800 hover:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-500 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               Continuer vos achats
             </button>
@@ -45,46 +45,54 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-[90px] transition-colors">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-[90px] transition-colors">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors mb-4"
+            className="flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all mb-6 group"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
             Continuer vos achats
           </button>
-          <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-              Panier ({items.length})
-            </h1>
-            <button
-              onClick={clearCart}
-              className="text-sm text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
-            >
-              Vider le panier
-            </button>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-2">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-200 dark:to-white bg-clip-text text-transparent animate-fade-in">
+                Panier
+              </h1>
+              <p className="text-gray-600 dark:text-gray-400 mt-2 text-lg">
+                {items.length} {items.length === 1 ? "article" : "articles"} dans votre panier
+              </p>
+            </div>
+            {items.length > 0 && (
+              <button
+                onClick={clearCart}
+                className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-all px-4 py-2.5 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 border border-transparent hover:border-red-200 dark:hover:border-red-800"
+              >
+                Vider le panier
+              </button>
+            )}
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-4">
-            {items.map((item) => (
+            {items.map((item, index) => (
               <div
                 key={item.id}
-                className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md transition-all"
+                className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-gray-200/50 dark:border-gray-700/50 p-6 hover:shadow-2xl hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.01]"
+                style={{ animationDelay: `${index * 50}ms` }}
               >
                 <div className="flex gap-4">
                   {/* Image */}
-                  <div className="relative w-24 h-24 flex-shrink-0 bg-gray-50 dark:bg-gray-700 rounded-lg overflow-hidden">
+                  <div className="relative w-28 h-28 flex-shrink-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
-                      className="object-cover"
+                      className="object-cover hover:scale-110 transition-transform duration-300"
                     />
                   </div>
 
@@ -131,7 +139,7 @@ export default function CartPage() {
                   {/* Remove Button */}
                   <button
                     onClick={() => removeItem(item.id)}
-                    className="p-2 text-gray-400 dark:text-gray-500 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                    className="p-3 text-gray-400 dark:text-gray-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-all transform hover:scale-110"
                   >
                     <Trash2 className="h-5 w-5" />
                   </button>
@@ -142,8 +150,8 @@ export default function CartPage() {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 sticky top-[152px] transition-colors">
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl border border-gray-200/50 dark:border-gray-700/50 p-6 sticky top-[152px] shadow-2xl transition-all hover:shadow-3xl">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
                 Résumé de la commande
               </h2>
 
@@ -175,29 +183,30 @@ export default function CartPage() {
                 </div>
               </div>
 
-              <button className="w-full bg-gray-900 dark:bg-gray-700 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors mb-3">
-                Passer la commande
+              <button className="w-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 text-white py-4 px-6 rounded-xl font-semibold hover:shadow-2xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 mb-3 relative overflow-hidden group">
+                <span className="relative z-10">Passer la commande</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-800 to-gray-700 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </button>
               <button
                 onClick={() => router.push("/products")}
-                className="w-full border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 py-3 px-6 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                className="w-full border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 py-3 px-6 rounded-xl font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-all hover:border-gray-300 dark:hover:border-gray-600"
               >
                 Continuer vos achats
               </button>
 
               {/* Trust Badges */}
-              <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-700 space-y-3 text-sm text-gray-600 dark:text-gray-300">
-                <div className="flex items-center gap-2">
-                  <svg className="h-5 w-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+              <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-700 space-y-3 text-sm">
+                <div className="flex items-center gap-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-xl">
+                  <svg className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span>Paiement sécurisé</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">Paiement sécurisé</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <svg className="h-5 w-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <div className="flex items-center gap-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
+                  <svg className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span>Retours gratuits sous 30 jours</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">Retours gratuits sous 30 jours</span>
                 </div>
               </div>
             </div>

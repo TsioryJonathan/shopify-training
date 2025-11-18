@@ -85,7 +85,7 @@ export default function AuthPage() {
           </div>
 
           {/* Right side - Auth Form */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 transition-colors">
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-8 md:p-12 transition-all hover:shadow-3xl">
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
                 {isLogin ? "Connexion" : "Créer un compte"}
@@ -189,7 +189,7 @@ export default function AuthPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white py-4 rounded-xl font-semibold hover:shadow-2xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none relative overflow-hidden group"
               >
                 {isLoading
                   ? "Chargement..."

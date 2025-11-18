@@ -5,7 +5,7 @@ import TrustBadges from "@/components/home/TrustBadges";
 import ShopByCollection from "@/components/home/ShopByCollection";
 import MinimalProductCard from "@/components/home/MinimalProductCard";
 import NewsletterShopify from "@/components/home/NewsletterShopify";
-import { getProducts } from "@/services/shopify.service";
+import { getRawShopifyProducts } from "@/services/shopify.service";
 import { shopifyConfig } from "@/lib/shopify/client";
 import Link from "next/link";
 
@@ -23,8 +23,8 @@ const collections = [
 ];
 
 export default async function Home() {
-  // 🛍️ Récupération des produits depuis Shopify
-  const allProducts = await getProducts({ first: 20 });
+  // 🛍️ Récupération des produits Shopify bruts depuis Shopify
+  const allProducts = await getRawShopifyProducts({ first: 20 });
   const featuredProducts = allProducts.slice(0, 8);
 
   return (

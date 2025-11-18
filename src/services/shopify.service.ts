@@ -82,6 +82,33 @@ export function convertShopifyProduct(shopifyProduct: ShopifyProduct): LocalProd
 }
 
 /**
+ * Récupère tous les produits Shopify bruts (sans conversion)
+ */
+export async function getRawShopifyProducts(options?: {
+  first?: number;
+  after?: string;
+  query?: string;
+}): Promise<ShopifyProduct[]> {
+  if (!isShopifyConfigured()) {
+    console.warn('⚠️ Shopify non configuré - Retour de données mock');
+    return [];
+  }
+
+  try {
+    const data = await shopifyFetch<ShopifyProductsResponse>(GET_ALL_PRODUCTS, {
+      first: options?.first || 20,
+      after: options?.after,
+      query: options?.query,
+    });
+
+    return data.products.edges.map(({ node }) => node);
+  } catch (error) {
+    console.error('Erreur lors de la récupération des produits:', error);
+    return [];
+  }
+}
+
+/**
  * Récupère tous les produits
  */
 export async function getProducts(options?: {

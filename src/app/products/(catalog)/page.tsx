@@ -87,7 +87,7 @@ export default function Products() {
       {/* Main Content */}
       <div className="bg-white dark:bg-gray-900 min-h-screen transition-colors">
         {/* Header Section */}
-        <div className="border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
+        <div className="border-b border-gray-100/50 dark:border-gray-800/50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md px-4 py-6 sm:px-6 lg:px-8 sticky top-[90px] z-10 shadow-sm">
           {/* Shopify Status Indicator */}
           {!isShopifyConfigured && (
             <div className="mb-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">

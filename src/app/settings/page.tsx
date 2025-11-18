@@ -96,16 +96,16 @@ export default function SettingsPage() {
         <div className="grid lg:grid-cols-4 gap-6">
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4 sticky top-[152px]">
+            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50 p-4 sticky top-[152px]">
               <nav className="space-y-1">
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all ${
                       activeTab === tab.id
-                        ? "bg-[#6366F1] text-white"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 dark:bg-gray-900"
+                        ? "bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] text-white shadow-lg transform scale-[1.02]"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-50/80 dark:hover:bg-gray-700/80 hover:scale-[1.01]"
                     }`}
                   >
                     <tab.icon className="h-5 w-5" />
@@ -128,7 +128,7 @@ export default function SettingsPage() {
 
           {/* Main Content */}
           <div className="lg:col-span-3">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50 p-6 hover:shadow-xl transition-all">
               {activeTab === "profile" && (
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Informations du profil</h2>

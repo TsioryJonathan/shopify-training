@@ -47,14 +47,14 @@ export default function ProfilePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-[90px] transition-colors">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-[90px] transition-colors">
       <div className="max-w-[1400px] mx-auto px-4 py-8">
         {/* Header */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-8 mb-6 transition-colors">
+        <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 p-8 mb-6 transition-all hover:shadow-3xl">
           <div className="flex flex-col md:flex-row items-center gap-6">
             {/* Avatar */}
-            <div className="relative">
-              <div className="h-32 w-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-lg">
+            <div className="relative group">
+              <div className="h-32 w-32 rounded-full overflow-hidden border-4 border-gray-100 dark:border-gray-700 shadow-xl ring-4 ring-gray-200/50 dark:ring-gray-700/50 group-hover:ring-[#6366F1]/30 transition-all">
                 {user.avatar ? (
                   <Image
                     src={assets.beautyCategory}
@@ -114,7 +114,7 @@ export default function ProfilePage() {
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           {stats.map((stat) => (
-            <div key={stat.label} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+            <div key={stat.label} className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-700/50 p-6 hover:shadow-2xl hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02]">
               <div className="flex items-center gap-4">
                 <div className={`p-3 rounded-lg ${stat.color}`}>
                   <stat.icon className="h-6 w-6" />
@@ -130,7 +130,7 @@ export default function ProfilePage() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {/* Personal Info */}
-          <div className="md:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors">
+          <div className="md:col-span-2 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 transition-colors">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Informations personnelles</h2>
             
             <div className="space-y-6">
@@ -198,7 +198,7 @@ export default function ProfilePage() {
 
           {/* Quick Actions */}
           <div className="space-y-6">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Actions rapides</h2>
               <div className="space-y-3">
                 <button

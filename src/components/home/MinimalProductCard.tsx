@@ -11,10 +11,25 @@ interface MinimalProductCardProps extends ShopifyProduct {}
 export default function MinimalProductCard(product: MinimalProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const hasDiscount = product.compareAtPrice && product.compareAtPrice > product.price;
-  const discountPercent = hasDiscount && product.compareAtPrice 
-    ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)
+  
+  // Extraire les images depuis la structure edges
+  const images = product.images?.edges?.map(edge => edge.node.url) || [];
+  
+  // Extraire les prix depuis priceRange
+  const currentPrice = parseFloat(product.priceRange.minVariantPrice.amount);
+  const compareAtPrice = product.compareAtPriceRange?.minVariantPrice?.amount 
+    ? parseFloat(product.compareAtPriceRange.minVariantPrice.amount) 
+    : null;
+  
+  const hasDiscount = compareAtPrice !== null && compareAtPrice > currentPrice;
+  const discountPercent = hasDiscount && compareAtPrice 
+    ? Math.round(((compareAtPrice - currentPrice) / compareAtPrice) * 100)
     : 0;
+  
+  // Formater le prix pour l'affichage
+  const formatPrice = (amount: number) => {
+    return Math.round(amount).toLocaleString('fr-FR');
+  };
 
   return (
     <Link
@@ -25,19 +40,19 @@ export default function MinimalProductCard(product: MinimalProductCardProps) {
     >
       {/* Image Container */}
       <div className="relative aspect-[3/4] mb-3 overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 shadow-sm group-hover:shadow-xl transition-all duration-300">
-        {product.images[0] && (
+        {images[0] && (
           <>
             <Image
-              src={product.images[0]}
+              src={images[0]}
               alt={product.title}
               fill
               className={`object-cover transition-all duration-700 ${
-                isHovered && product.images[1] ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
+                isHovered && images[1] ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
               }`}
             />
-            {product.images[1] && (
+            {images[1] && (
               <Image
-                src={product.images[1]}
+                src={images[1]}
                 alt={product.title}
                 fill
                 className={`object-cover transition-all duration-700 ${
@@ -112,12 +127,12 @@ export default function MinimalProductCard(product: MinimalProductCardProps) {
         {/* Price */}
         <div className="flex items-baseline gap-2">
           <span className="text-base md:text-lg font-bold text-gray-900 dark:text-white">
-            {product.price.toLocaleString()} Ar
+            {formatPrice(currentPrice)} Ar
           </span>
-          {hasDiscount && (
+          {hasDiscount && compareAtPrice !== null && (
             <>
               <span className="text-xs md:text-sm text-gray-500 dark:text-gray-400 line-through">
-                {product.compareAtPrice?.toLocaleString()} Ar
+                {formatPrice(compareAtPrice)} Ar
               </span>
               <span className="text-xs font-semibold text-red-500 ml-auto">
                 -{discountPercent}%

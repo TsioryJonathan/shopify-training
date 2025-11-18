@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Heart, ShoppingCart, Star, Truck, Shield, RefreshCw, ChevronLeft, Share2, Minus, Plus, Loader2 } from "lucide-react";
 import PopularProductCard from "@/components/home/PopularProductCard";
@@ -15,7 +15,7 @@ export default function AboutProduct() {
   const router = useRouter();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const [selectedSize, setSelectedSize] = useState("M");
+  const [selectedSize, setSelectedSize] = useState<string | undefined>(undefined);
   
   const addToCart = useCartStore((state) => state.addItem);
   const toggleWishlist = useWishlistStore((state) => state.toggleItem);
@@ -29,6 +29,19 @@ export default function AboutProduct() {
   // Récupération des produits similaires
   const { products: allProducts } = useShopifyProducts({ first: 10 });
   const relatedProducts = allProducts.filter(p => p.id !== product?.id).slice(0, 5);
+
+  // Extraire les tailles disponibles depuis les variantes (même si product n'est pas encore chargé)
+  const variantOptions = product ? getUniqueVariantOptions(product) : {};
+  const sizes = variantOptions.Size || variantOptions.Taille;
+  const hasSizes = sizes && sizes.length > 0;
+  
+  // Initialiser la taille sélectionnée si le produit a des tailles
+  // Ce hook doit être appelé avant les retours conditionnels pour respecter les règles de React
+  useEffect(() => {
+    if (product && hasSizes && sizes && !selectedSize) {
+      setSelectedSize(sizes[0]);
+    }
+  }, [product, hasSizes, sizes, selectedSize]);
 
   if (loading) {
     return (
@@ -66,10 +79,6 @@ export default function AboutProduct() {
   const images = product.images && product.images.length > 0 
     ? product.images 
     : [product.image];
-  
-  // Extraire les tailles disponibles depuis les variantes
-  const variantOptions = getUniqueVariantOptions(product);
-  const sizes = variantOptions.Size || variantOptions.Taille || ["XS", "S", "M", "L", "XL", "XXL"];
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 pb-20 lg:pb-0  transition-colors">
@@ -223,32 +232,34 @@ export default function AboutProduct() {
               </p>
             </div>
 
-            {/* Size Selection */}
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <label className="text-xs font-medium text-gray-900 dark:text-white">
-                  Taille: <span className="font-bold">{selectedSize}</span>
-                </label>
-                <button className="text-xs text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:text-white underline">
-                  Guide des tailles
-                </button>
-              </div>
-              <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
-                {sizes.map((size) => (
-                  <button
-                    key={size}
-                    onClick={() => setSelectedSize(size)}
-                    className={`py-2 text-sm font-medium rounded-lg border transition-all ${
-                      selectedSize === size
-                        ? "border-gray-900 bg-gray-900 text-white"
-                        : "border-gray-200 dark:border-gray-700 hover:border-gray-400"
-                    }`}
-                  >
-                    {size}
+            {/* Size Selection - Only show if product has size variants */}
+            {hasSizes && sizes && (
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-xs font-medium text-gray-900 dark:text-white">
+                    Taille: <span className="font-bold">{selectedSize}</span>
+                  </label>
+                  <button className="text-xs text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white underline">
+                    Guide des tailles
                   </button>
-                ))}
+                </div>
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                  {sizes.map((size) => (
+                    <button
+                      key={size}
+                      onClick={() => setSelectedSize(size)}
+                      className={`py-2 text-sm font-medium rounded-lg border transition-all ${
+                        selectedSize === size
+                          ? "border-gray-900 bg-gray-900 text-white"
+                          : "border-gray-200 dark:border-gray-700 hover:border-gray-400"
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Quantity */}
             <div>
@@ -285,10 +296,10 @@ export default function AboutProduct() {
             <div className="space-y-2 pt-3">
               <button 
                 onClick={() => {
-                  addToCart(product, quantity, selectedSize);
+                  addToCart(product, quantity, hasSizes ? selectedSize : undefined);
                   // Optionally show a toast notification here
                 }}
-                disabled={!product.availableForSale}
+                disabled={!product.availableForSale || (hasSizes && !selectedSize)}
                 className="w-full flex items-center justify-center gap-2 bg-gray-900 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
               >
                 <ShoppingCart className="h-4 w-4" />
@@ -296,10 +307,10 @@ export default function AboutProduct() {
               </button>
               <button 
                 onClick={() => {
-                  addToCart(product, quantity, selectedSize);
+                  addToCart(product, quantity, hasSizes ? selectedSize : undefined);
                   router.push("/cart");
                 }}
-                disabled={!product.availableForSale}
+                disabled={!product.availableForSale || (hasSizes && !selectedSize)}
                 className="w-full flex items-center justify-center gap-2 border-2 border-gray-900 text-gray-900 dark:text-white dark:border-gray-700 py-3 px-6 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
               >
                 Acheter maintenant
@@ -440,9 +451,9 @@ export default function AboutProduct() {
           </button>
           <button 
             onClick={() => {
-              addToCart(product, 1, selectedSize);
+              addToCart(product, 1, hasSizes ? selectedSize : undefined);
             }}
-            disabled={!product.availableForSale}
+            disabled={!product.availableForSale || (hasSizes && !selectedSize)}
             className="flex-1 flex items-center justify-center gap-2 bg-gray-900 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <ShoppingCart className="h-5 w-5" />
